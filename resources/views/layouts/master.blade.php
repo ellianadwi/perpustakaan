@@ -62,8 +62,15 @@
 
 
         <!-- page content -->
+        <div class="right_col" role="main">
+
         @yield('content')
+            @include('includes.footer')
+        </div>
         <!-- /page content -->
+        {{--<div class="col-md-10  right_col row">--}}
+            {{--@include('includes.footer')--}}
+        {{--</div>--}}
     </div>
 
 </div>
@@ -76,6 +83,7 @@
 </div>
 
 <script src="{!! asset('assets/js/bootstrap.min.js') !!}"></script>
+
 
 <!-- gauge js -->
 <script type="text/javascript" src="{!! asset('assets/js/gauge/gauge.min.js') !!}"></script>
@@ -182,12 +190,12 @@
 </script>
 
 <!-- worldmap -->
-<script type="text/javascript" src="js/maps/jquery-jvectormap-2.0.3.min.js"></script>
-<script type="text/javascript" src="js/maps/gdp-data.js"></script>
-<script type="text/javascript" src="js/maps/jquery-jvectormap-world-mill-en.js"></script>
-<script type="text/javascript" src="js/maps/jquery-jvectormap-us-aea-en.js"></script>
+<script type="text/javascript" src="{!! asset('assets/js/maps/jquery-jvectormap-2.0.3.min.js') !!}"></script>
+<script type="text/javascript" src="{!! asset('assets/js/maps/gdp-data.js') !!}"></script>
+<script type="text/javascript" src="{!! asset('assets/js/maps/jquery-jvectormap-world-mill-en.js') !!}"></script>
+<script type="text/javascript" src="{!! asset('assets/js/maps/jquery-jvectormap-us-aea-en.js') !!}"></script>
 <!-- pace -->
-<script src="js/pace/pace.min.js"></script>
+<script src="{!! asset('assets/js/pace/pace.min.js') !!}"></script>
 <script>
     $(function () {
         $('#world-map-gdp').vectorMap({
@@ -208,7 +216,7 @@
     });
 </script>
 <!-- skycons -->
-<script src="js/skycons/skycons.min.js"></script>
+<script src="{!! asset('assets/js/skycons/skycons.min.js') !!}"></script>
 <script>
     var icons = new Skycons({
                 "color": "#73879C"
@@ -304,7 +312,6 @@
             buttonClasses: ['btn btn-default'],
             applyClass: 'btn-small btn-primary',
             cancelClass: 'btn-small',
-            format: 'MM/DD/YYYY',
             separator: ' to ',
             locale: {
                 applyLabel: 'Submit',
@@ -342,11 +349,9 @@
         });
     });
 </script>
-<script>
-    NProgress.done();
-</script>
 <!-- /datepicker -->
 <!-- /footer content -->
+@yield('scripts')
 </body>
 
 </html>
