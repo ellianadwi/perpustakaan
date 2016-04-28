@@ -39,7 +39,7 @@
                                 </a>
                                 </span>
                                     <span tooltip="Refresh data">
-                            <button md-ink-ripple class="btn btn-sm btn-default" ng-click="refreshData()">
+                            <button md-ink-ripple class="btn btn-sm btn-default" onclick="getAjax()">
                                 <i class="glyphicon glyphicon-refresh"></i>
                             </button>
                               </span>
