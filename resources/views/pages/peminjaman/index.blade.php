@@ -396,8 +396,8 @@
                                 $("#data-example").append("" +
                                         "<tr>" +
                                         "<td>" + data.kode_peminjaman + "</td>" +
-                                        "<td>" + data.id_petugas + "</td>" +
-                                        "<td>" + data.id_anggota + "</td>" +
+                                        "<td>" + data.petugas.nama_petugas + "</td>" +
+                                        "<td>" + data.anggota.nama_anggota + "</td>" +
                                         "<td>" + data.peminjam_tgl + "</td>" +
                                         "<td>" + data.peminjam_tgl_kembali + "</td>" +
                                         "<td>" +
