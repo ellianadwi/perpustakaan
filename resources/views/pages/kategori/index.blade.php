@@ -89,29 +89,29 @@
                             <div class="col-lg-8">
                                 <form id="Form-Create" class="form-horizontal form-label-left">
                                     <div class="form-group">
-                                        <label class="control-label col-sm-3 col-xs-12">
+                                        <label class="control-label col-sm-3">
                                             Kode Kategori </label>
-                                        <div class="col-md-9 col-sm-10">
+                                        <div class="col-sm-6">
                                             <input type="text" name="kode_kategori" id="kode_kategori"
                                                    required="required" class="form-control col-md-12 col-xs-12">
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label class="control-label col-sm-3 col-xs-12">
+                                        <label class="control-label col-sm-3">
                                             Nama Kategori </label>
-                                        <div class="col-md-9 col-sm-10">
+                                        <div class="col-sm-6">
                                             <input type="text" name="nama_kategori" id="nama_kategori"
                                                    required="required" class="form-control col-md-12 col-xs-12">
                                         </div>
                                     </div>
-                                    <div class="form-group" >
-                                        <div class="col-sm-offset-9 col-sm-8">
-                                        <input class="btn btn-outline btn-info" type="submit" id="Submit"
-                                               value="Simpan ">
-                                        <button type="button" class="btn btn-outline btn-primary"
-                                                onclick="Index()"> Kembali
-                                        </button>
-                                            </div>
+                                    <div class="form-group">
+                                        <div class="col-sm-offset-3 col-sm-6">
+                                            <input class="btn btn-outline btn-info" type="submit" id="Submit"
+                                                   value="Simpan ">
+                                            <button type="button" class="btn btn-outline btn-primary"
+                                                    onclick="Index()"> Kembali
+                                            </button>
+                                        </div>
                                     </div>
                                 </form>
                             </div>
@@ -123,53 +123,75 @@
     </div>
 
     <div id="Edit">
-        <div class="row">
-            <div class="col-lg-12">
-                <div class="panel panel-default">
-                    <div class="panel-heading">
-                        Edit Kategori #
-                    </div>
-                    <div class="panel-body">
-                        <form role="form" id="Form-Edit">
-                            <div class="row">
-                                <div class="col-lg-6">
-                                <form id="Form-Create" class="form-horizontal form-label-left">
-                                    <input type="hidden" name="id">
-                                    <div class="form-group">
-                                        <label class="control-label col-sm-3 col-xs-12">
-                                            Kode Kategori </label>
-                                        <div class="col-md-9 col-sm-10">
-                                            <input type="text" name="kode_kategori" id="kode_kategori"
-                                                    class="form-control col-md-12 col-xs-12">
-                                        </div>
-                                    </div>
+        <div class="col-md-12 col-sm-12 col-xs-12">
+            <div class="x_panel">
+                <div class="x_title">
+                    <h2>Edit Kategori</h2>
+                    <ul class="nav navbar-right panel_toolbox">
+                        <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+                        </li>
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+                               aria-expanded="false"><i class="fa fa-wrench"></i></a>
+                            <ul class="dropdown-menu" role="menu">
+                                <li><a href="#">Settings 1</a>
+                                </li>
+                                <li><a href="#">Settings 2</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li><a class="close-link"><i class="fa fa-close"></i></a>
+                        </li>
+                    </ul>
+                    <div class="clearfix"></div>
+                </div>
 
-                                    <div class="form-group">
-                                        <label class="control-label col-sm-3 col-xs-12">
-                                            Nama Kategori </label>
-                                        <div class="col-md-9 col-sm-10">
-                                            <input type="text" name="nama_kategori" id="nama_kategori"
-                                                    class="form-control col-md-12 col-xs-12">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="panel panel-default">
+                            <div class="panel-body">
+                                <div class="row">
+                                    <div class="col-lg-8">
+                                        <form id="Form-Edit" class="form-horizontal form-label-left">
+                                            <input type="hidden" name="id">
+                                            <div class="form-group">
+                                                <label class="control-label col-sm-3">
+                                                Kode Kategori </label>
+                                            <div class="col-sm-6">
+                                                <input type="text" name="kode_kategori" id="kode_kategori"
+                                                       class="form-control col-md-12 col-xs-12">
+                                            </div>
                                         </div>
-                                    </div>
 
                                         <div class="form-group">
-                                            <input class="btn btn-outline btn-info" type="submit" value="Simpan">
-                                            {{--onclick="location.href='/makanan/{{$data->id}}';">Simpan--}}
-                                            {{--</button>--}}
-                                            <button type="button" class="btn btn-outline btn-primary"
-                                                    onclick="Index();">Kembali
-                                            </button>
+                                            <label class="control-label col-sm-3">
+                                                Nama Kategori </label>
+                                            <div class="col-sm-6">
+                                                <input type="text" name="nama_kategori" id="nama_kategori"
+                                                       class="form-control col-md-12 col-xs-12">
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <div class="col-sm-offset-3 col-sm-6">
+                                                <input class="btn btn-outline btn-info" type="submit" value="Simpan">
+                                                {{--onclick="location.href='/makanan/{{$data->id}}';">Simpan--}}
+                                                {{--</button>--}}
+                                                <button type="button" class="btn btn-outline btn-primary"
+                                                        onclick="Index();">Kembali
+                                                </button>
+                                            </div>
                                         </div>
                                     </form>
+                                    </div>
                                 </div>
+
                             </div>
-                        </form>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
+        </div></div>
 
     {{--Modal--}}
 
