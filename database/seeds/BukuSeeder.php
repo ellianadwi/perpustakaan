@@ -14,9 +14,9 @@ class BukuSeeder extends Seeder
         DB::table('buku')->truncate();
 
         DB::table('buku')->insert([
-            ['id' => 1, 'id_kategori' => '0', 'id_penerbit' => '1', 'kode_buku' => '01','judul_buku' => 'B.Indonesia',
+            ['id' => 1, 'id_kategori' => '1', 'id_penerbit' => '1', 'kode_buku' => '01','judul_buku' => 'B.Indonesia',
              'jumlah_buku' => '1', 'diskripsi_buku' => 'Mengandung pembahasan pelajaran bahasa indonesia ', 'pengarang_buku' => 'Habibi',
-             'tahun_terbit_buku' => '2004','created_at' => \Carbon\Carbon::now()],
+             'tahun_terbit_buku' => '2004','status' => '0','created_at' => \Carbon\Carbon::now()],
 
         ]);
 

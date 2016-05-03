@@ -54,4 +54,9 @@ class PeminjamanController extends Controller
     {
         return $this->peminjaman->getData();
     }
+
+    public function kembali($id)
+    {
+        return $this->peminjaman->kembali($id);
+    }
 }

@@ -48,11 +48,14 @@ class PeminjamanRepository extends AbstractRepository implements Paginable, Crud
         try {
             $peminjaman = parent::create(
                 [
-                    'id_petugas'           => e($data['id_petugas']),
+                    'id_buku'              => e($data['id_buku']),
+                    'id_petugas'           => 1,
                     'id_anggota'           => e($data['id_anggota']),
                     'kode_peminjaman'      => e($data['kode_peminjaman']),
                     'peminjam_tgl'         => e($data['peminjam_tgl']),
                     'peminjam_tgl_kembali' => e($data['peminjam_tgl_kembali']),
+//                    'buku_tgl_kembali'     => e($data['buku_tgl_kembali']),
+                    'status'               => 1,
                 ]
             );
             // flush cache with tags
@@ -69,11 +72,14 @@ class PeminjamanRepository extends AbstractRepository implements Paginable, Crud
     {
         try {
             $peminjaman = parent::update($id, [
-                'id_petugas'           => e($data['id_petugas']),
-                'id_anggota'           => e($data['id_anggota']),
-                'kode_peminjaman'      => e($data['kode_peminjaman']),
+//                'id_buku'              => e($data['id_buku']),
+//                'id_petugas'           => e($data['id_petugas']),
+//                'id_anggota'           => e($data['id_anggota']),
+//                'kode_peminjaman'      => e($data['kode_peminjaman']),
                 'peminjam_tgl'         => e($data['peminjam_tgl']),
                 'peminjam_tgl_kembali' => e($data['peminjam_tgl_kembali']),
+//                'buku_tgl_kembali'     => e($data['buku_tgl_kembali']),
+//                'denda'                => e($data['denda']),
             ]);
 
             // flush cache with tags
@@ -129,5 +135,34 @@ class PeminjamanRepository extends AbstractRepository implements Paginable, Crud
         $data = $this->model
             ->get();
         return $data;
+    }
+
+    public function kembali($id)
+    {
+        try {
+            $data = \DB::table('peminjaman')
+                ->where('id', $id)
+                ->first();
+
+            $a = substr($data->peminjam_tgl_kembali, 8, 2);
+            $b = substr(date("Y-m-d"), 8, 2);
+            $denda = ($b - $a) * 1000;
+
+            $peminjaman = parent::update($id, [
+                'buku_tgl_kembali' => date('Y-m-d'),
+                'denda'            => $denda,
+                'status'           => 0,
+            ]);
+
+            // flush cache with tags
+            $this->cache->flush(Peminjaman::$tags);
+
+            return $peminjaman;
+
+        } catch (\Exception $e) {
+            // store errors to log
+            Log::error('class : ' . PeminjamanRepository::class . ' method : update | ' . $e);
+            return $this->createError();
+        }
     }
 }

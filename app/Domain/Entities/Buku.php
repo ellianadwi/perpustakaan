@@ -17,7 +17,8 @@ class Buku extends Entities
      * @var array
      */
     protected $fillable = ['id_kategori', 'id_penerbit', 'kode_buku', 'judul_buku', 'jumlah_buku',
-        'diskripsi_buku','pengarang_buku', 'tahun_terbit_buku'];
+        'diskripsi_buku','pengarang_buku', 'tahun_terbit_buku','status'];
+    protected $with = ['kategori'];
 
     /**
      * @var string
@@ -36,5 +37,8 @@ class Buku extends Entities
         'user_creator',
         'user_updater',
     ];
-
+    public function kategori()
+    {
+        return $this->belongsTo('App\Domain\Entities\Kategori', 'id_kategori');
+    }
 }

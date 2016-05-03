@@ -8,7 +8,7 @@
         <div class="col-md-12 col-sm-12 col-xs-12">
             <div class="x_panel">
                 <div class="x_title">
-                    <h2>Peminjaman</h2>
+                    <h2>Pengembalian</h2>
                     <ul class="nav navbar-right panel_toolbox">
                         <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                         </li>
@@ -157,35 +157,27 @@
                                                 <label class="control-label col-sm-3">
                                                     Tanggal Peminjam</label>
                                                 <div class="col-sm-7">
-                                                    {{--<input type="text" name="peminjam_tgl" id="datepicker"--}}
-                                                    {{--required="required" class="date-picker form-control col-md-7 col-xs-12">--}}
-                                                    <input data-parsley-id="7216" id="birthday"
-                                                           name="peminjam_tgl"
-                                                           class="date-picker form-control col-md-7 col-xs-12 active"
-                                                           required="required" type="text">
+                                                    <input type="text" name="peminjam_tgl" id="peminjam_tgl"
+                                                           required="required" class="form-control col-md-12 col-xs-12">
                                                 </div>
                                             </div>
                                             <div class="form-group">
                                                 <label class="control-label col-sm-3">
                                                     Tanggal Kembali Peminjam</label>
                                                 <div class="col-sm-7">
-                                                    {{--<input type="text" name="peminjam_tgl_kembali"--}}
-                                                    {{--id="peminjam_tgl_kembali"--}}
-                                                    {{--required="required" class="form-control col-md-12 col-xs-12">--}}
-                                                    <input data-parsley-id="7216" id="peminjam_tgl_kembali"
-                                                           name="peminjam_tgl_kembali"
-                                                           class="date-picker form-control col-md-7 col-xs-12 active"
-                                                           required="required" type="text">
+                                                    <input type="text" name="peminjam_tgl_kembali"
+                                                           id="peminjam_tgl_kembali"
+                                                           required="required" class="form-control col-md-12 col-xs-12">
                                                 </div>
                                             </div>
-                                            {{--<div class="form-group">--}}
-                                                {{--<label class="control-label col-sm-3">--}}
-                                                    {{--Buku Kembali Peminjam</label>--}}
-                                                {{--<div class="col-sm-7">--}}
-                                                    {{--<input type="text" name="buku_tgl_kembali" id="buku_tgl_kembali"--}}
-                                                           {{--required="required" class="form-control col-md-12 col-xs-12">--}}
-                                                {{--</div>--}}
-                                            {{--</div>--}}
+                                            <div class="form-group">
+                                                <label class="control-label col-sm-3">
+                                                    Buku Kembali Peminjam</label>
+                                                <div class="col-sm-7">
+                                                    <input type="text" name="buku_tgl_kembali" id="buku_tgl_kembali"
+                                                           required="required" class="form-control col-md-12 col-xs-12">
+                                                </div>
+                                            </div>
 
                                             <div class="row row-sm form-group">
                                                 <div class="col-sm-offset-3 col-sm-6">
@@ -300,14 +292,14 @@
                                                            required="required" class="form-control col-md-12 col-xs-12">
                                                 </div>
                                             </div>
-                                            {{--<div class="form-group">--}}
-                                                {{--<label class="control-label col-sm-3">--}}
-                                                    {{--Buku Kembali Peminjam</label>--}}
-                                                {{--<div class="col-sm-7">--}}
-                                                    {{--<input type="text" name="buku_tgl_kembali" id="buku_tgl_kembali"--}}
-                                                           {{--required="required" class="form-control col-md-12 col-xs-12">--}}
-                                                {{--</div>--}}
-                                            {{--</div>--}}
+                                            <div class="form-group">
+                                                <label class="control-label col-sm-3">
+                                                    Buku Kembali Peminjam</label>
+                                                <div class="col-sm-7">
+                                                    <input type="text" name="buku_tgl_kembali" id="buku_tgl_kembali"
+                                                           required="required" class="form-control col-md-12 col-xs-12">
+                                                </div>
+                                            </div>
                                             <div class="row row-sm form-group">
                                                 <div class="col-sm-offset-3 col-sm-6">
                                                     <input class="btn btn-outline btn-info" type="submit"
@@ -362,15 +354,6 @@
     {{--<script src="{!! asset('bower_components/jquery/dist/jquery.min.js') !!}"></script>--}}
     <script>
         $(document).ready(function () {
-            $('.date-picker').daterangepicker({
-                startDate: moment(),
-                singleDatePicker: true,
-                format: "YYYY-MM-DD",
-                calender_style: "picker_4"
-            }, function (start, end, label) {
-                console.log(start.toISOString(), end.toISOString(), label);
-            });
-
             var currentRequest = null;
             $('#Create').hide();
             $('#Edit').hide();
@@ -383,7 +366,7 @@
                         id_anggota = $form.find("select[name='id_anggota']").val(),
                         peminjam_tgl = $form.find("input[name='peminjam_tgl']").val(),
                         peminjam_tgl_kembali = $form.find("input[name='peminjam_tgl_kembali']").val();
-//                buku_tgl_kembali = $form.find("input[name='buku_tgl_kembali']").val();
+                buku_tgl_kembali = $form.find("input[name='buku_tgl_kembali']").val();
 //                $("#Form-Create").reset();
                 var posting = $.post('/peminjaman', {
                     kode_peminjaman: kode_peminjaman,
@@ -391,7 +374,7 @@
                     id_anggota: id_anggota,
                     peminjam_tgl: peminjam_tgl,
                     peminjam_tgl_kembali: peminjam_tgl_kembali,
-//                    buku_tgl_kembali: buku_tgl_kembali
+                    buku_tgl_kembali: buku_tgl_kembali
                 });
                 //Put the results in a div
                 posting.done(function (data) {
@@ -413,12 +396,12 @@
                         id_anggota = $form.find("select[name='id_anggota']").val(),
                         peminjam_tgl = $form.find("input[name='peminjam_tgl']").val(),
                         peminjam_tgl_kembali = $form.find("input[name='peminjam_tgl_kembali']").val(),
-//                        buku_tgl_kembali = $form.find("input[name='buku_tgl_kembali']").val();
+                        buku_tgl_kembali = $form.find("input[name='buku_tgl_kembali']").val();
 
 
                 currentRequest = $.ajax({
                     method: "PUT",
-                    url: '/api/v1/peminjaman/' + id,
+                    url: '/peminjaman/' + id,
                     data: {
                         kode_peminjaman: kode_peminjaman,
 //                                id_petugas: id_petugas,
@@ -426,7 +409,7 @@
                         id_anggota: id_anggota,
                         peminjam_tgl: peminjam_tgl,
                         peminjam_tgl_kembali: peminjam_tgl_kembali,
-//                        buku_tgl_kembali: buku_tgl_kembali
+                        buku_tgl_kembali: buku_tgl_kembali
                     },
                     beforeSend: function () {
                         if (currentRequest != null) {
@@ -445,6 +428,11 @@
             });
         });
 
+        $(function () {
+            //tambah class active
+            $('#menu-pengembalian').addClass('active');
+
+        });
         function Index() {
             $('#Create').hide();
             $('#Edit').hide();
@@ -459,18 +447,9 @@
             $('#Edit').hide();
             $('#Index').hide();
             $('#Create').show();
-            $(document).ready(function () {
-                $('#datepicker').daterangepicker({
-                    singleDatePicker: true,
-                    calender_style: "picker_4"
-                }, function (start, end, label) {
-                    console.log(start.toISOString(), end.toISOString(), label);
-                });
-            });
             document.getElementById("Form-Create").reset();
             document.getElementById("Form-Edit").reset();
             getBuku();
-
 //            getAnggota();
         }
         function getBuku() {
@@ -507,23 +486,38 @@
                 $.getJSON("/api/v1/peminjaman", function (data) {
                     var jumlah = data.data.length;
                     $.each(data.data.slice(0, jumlah), function (i, data) {
-                        $("#data-example").append("" +
-                                "<tr>" +
-                                "<td>" + data.kode_peminjaman + "</td>" +
-                                "<td>" + data.buku.judul_buku + "</td>" +
+                        if (data.status == 1) {
+                            $("#data-example").append("" +
+                                    "<tr>" +
+                                    "<td>" + data.kode_peminjaman + "</td>" +
+                                    "<td>" + data.buku.judul_buku + "</td>" +
 //                                        "<td>" + data.petugas.nama_petugas + "</td>" +
-                                "<td>" + data.anggota.nama_anggota + "</td>" +
-                                "<td>" + data.peminjam_tgl + "</td>" +
-                                "<td>" + data.peminjam_tgl_kembali + "</td>" +
-                                "<td>" +
-                                "<button type='button' class='btn btn-outline btn-info' " +
-                                "onclick='Edit(\"" + data.id + "\")'>" +
-                                "<i class='glyphicon glyphicon-edit'></i></button> " +
-                                "<button type='button' class='btn btn-outline btn-danger'  " +
-                                "onclick='Hapus(\"" + data.id + "\")'> " +
-                                "<i class='glyphicon glyphicon-trash'></i></button>" +
-                                "</td>" +
-                                "</tr>");
+                                    "<td>" + data.anggota.nama_anggota + "</td>" +
+                                    "<td>" + data.peminjam_tgl + "</td>" +
+                                    "<td>" + data.peminjam_tgl_kembali + "</td>" +
+                                    "<td>" +
+                                    "<button type='button' class='btn btn-outline btn-info' " +
+                                    "onclick='Kembali(\"" + data.id + "\")'>" +
+                                    "Kembalikan Buku Saya</button> " +
+                                    "</td>" +
+                                    "</tr>");
+                        }
+                        if (data.status == 0) {
+                            $("#data-example").append("" +
+                                    "<tr>" +
+                                    "<td>" + data.kode_peminjaman + "</td>" +
+                                    "<td>" + data.buku.judul_buku + "</td>" +
+//                                        "<td>" + data.petugas.nama_petugas + "</td>" +
+                                    "<td>" + data.anggota.nama_anggota + "</td>" +
+                                    "<td>" + data.peminjam_tgl + "</td>" +
+                                    "<td>" + data.peminjam_tgl_kembali + "</td>" +
+                                    "<td>" +
+                                    "<button type='button' class='btn btn-outline btn-info' " +
+                                    "onclick='Detail(\"" + data.id + "\")'>" +
+                                    "Detail</button> " +
+                                    "</td>" +
+                                    "</tr>");
+                        }
                     })
                 });
             }, 2200);
@@ -551,7 +545,7 @@
                         $("input[name='id_anggota']").val(data_edit.id_anggota);
                         $("input[name='peminjam_tgl']").val(data_edit.peminjam_tgl);
                         $("input[name='peminjam_tgl_kembali']").val(data_edit.peminjam_tgl_kembali);
-//                        $("input[name='buku_tgl_kembali']").val(data_edit.buku_tgl_kembali);
+                        $("input[name='buku_tgl_kembali']").val(data_edit.buku_tgl_kembali);
                         $.getJSON("/data-buku", function (data) {
                             var jumlah = data.length;
                             $.each(data.slice(0, jumlah), function (i, data) {
@@ -579,11 +573,34 @@
                     });
         }
 
+        function Kembali(id) {
+            var currentRequest = null;
+
+            currentRequest = $.ajax({
+                method: "PUT",
+                url: '/api/v1/kembalikan-buku/' + id,
+                data: {},
+                beforeSend: function () {
+                    if (currentRequest != null) {
+                        currentRequest.abort();
+                    }
+                },
+                success: function (data) {
+                    window.alert(data.result.message);
+                    Index();
+                },
+                error: function (data) {
+                    window.alert(data.result.message);
+                    Index();
+                }
+            });
+        }
+
         function Detail(id) {
             $("#modal-body").children().remove();
             $.ajax({
                 method: "GET",
-                url: '/peminjaman/' + id,
+                url: '/api/v1/peminjaman/' + id,
                 data: {},
                 beforeSend: function () {
                     $('#loader-wrapper').show();

@@ -1,6 +1,5 @@
 @extends('layouts.master')
 @section('title', 'Page Title')
-
 @section('content')
     <body onload="Index()" xmlns="http://www.w3.org/1999/html">
     <div id="Index">
@@ -8,7 +7,7 @@
         <div class="col-md-12 col-sm-12 col-xs-12">
             <div class="x_panel">
                 <div class="x_title">
-                    <h2>Peminjaman</h2>
+                    <h2>Buku</h2>
                     <ul class="nav navbar-right panel_toolbox">
                         <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                         </li>
@@ -61,15 +60,15 @@
                                     <table class="table table-striped responsive-utilities jambo_table bulk_action">
                                         <thead>
                                         <tr>
-                                            <th>Kode Peminjaman</th>
-                                            <th>Buku</th>
-                                            <th>Anggota</th>
-                                            <th>Tanggal Pinjaman</th>
-                                            <th>Tanggal Kembali Pinjaman</th>
+                                            <th>Kode Buku</th>
+                                            <th>Kategori</th>
+                                            <th>Judul Buku</th>
+                                            <th>Jumlah Buku</th>
                                             <th>Aksi</th>
                                         </tr>
                                         </thead>
                                         <tbody id="data-example">
+                                        </tbody>
                                     </table>
                                 </div>
 
@@ -84,7 +83,7 @@
         <div class="col-md-12 col-sm-12 col-xs-12">
             <div class="x_panel">
                 <div class="x_title">
-                    <h2>Tambah Peminjam</h2>
+                    <h2>Tambah Buku</h2>
                     <ul class="nav navbar-right panel_toolbox">
                         <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                         </li>
@@ -112,32 +111,17 @@
                                         <form id="Form-Create" class="form-horizontal form-label-left">
                                             <div class="form-group">
                                                 <label class="control-label col-sm-3">
-                                                    Kode Peminjaman </label>
+                                                    Kode Buku </label>
                                                 <div class="col-sm-7">
-                                                    <input type="text" name="kode_peminjaman" id="kode_peminjaman"
+                                                    <input type="text" name="kode_buku" id="kode_buku"
                                                            required="required" class="form-control col-md-12 col-xs-12">
                                                 </div>
                                             </div>
                                             <div class="form-group">
                                                 <label class="control-label col-sm-3">
-                                                    Kelas</label>
+                                                    Kategori </label>
                                                 <div class="col-sm-7">
-                                                    <select type="text" name="kelas" id="kelas"
-                                                            required="required"
-                                                            class="form-control col-md-12 col-xs-12"
-                                                            onchange="getAnggota()">
-                                                        <option>Pilih Kelas</option>
-                                                        <option value="10">X</option>
-                                                        <option value="11">XI</option>
-                                                        <option value="12">XII</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-                                            <div class="form-group">
-                                                <label class="control-label col-sm-3">
-                                                    Anggota</label>
-                                                <div class="col-sm-7">
-                                                    <select type="text" name="id_anggota" id="id_anggota"
+                                                    <select type="text" name="id_kategori" id="id_kategori"
                                                             required="required"
                                                             class="form-control col-md-12 col-xs-12">
                                                     </select>
@@ -145,48 +129,44 @@
                                             </div>
                                             <div class="form-group">
                                                 <label class="control-label col-sm-3">
-                                                    Buku</label>
+                                                    Judul Buku </label>
                                                 <div class="col-sm-7">
-                                                    <select type="text" name="id_buku" id="id_buku"
-                                                            required="required"
-                                                            class="form-control col-md-12 col-xs-12">
-                                                    </select>
+                                                    <input type="text" name="judul_buku" id="judul_buku"
+                                                           required="required" class="form-control col-md-12 col-xs-12">
                                                 </div>
                                             </div>
                                             <div class="form-group">
                                                 <label class="control-label col-sm-3">
-                                                    Tanggal Peminjam</label>
+                                                    Jumlah Buku </label>
                                                 <div class="col-sm-7">
-                                                    {{--<input type="text" name="peminjam_tgl" id="datepicker"--}}
-                                                    {{--required="required" class="date-picker form-control col-md-7 col-xs-12">--}}
-                                                    <input data-parsley-id="7216" id="birthday"
-                                                           name="peminjam_tgl"
-                                                           class="date-picker form-control col-md-7 col-xs-12 active"
-                                                           required="required" type="text">
+                                                    <input type="text" name="jumlah_buku" id="jumlah_buku"
+                                                           required="required" class="form-control col-md-12 col-xs-12">
                                                 </div>
                                             </div>
                                             <div class="form-group">
                                                 <label class="control-label col-sm-3">
-                                                    Tanggal Kembali Peminjam</label>
+                                                    Deskripsi Buku </label>
                                                 <div class="col-sm-7">
-                                                    {{--<input type="text" name="peminjam_tgl_kembali"--}}
-                                                    {{--id="peminjam_tgl_kembali"--}}
-                                                    {{--required="required" class="form-control col-md-12 col-xs-12">--}}
-                                                    <input data-parsley-id="7216" id="peminjam_tgl_kembali"
-                                                           name="peminjam_tgl_kembali"
-                                                           class="date-picker form-control col-md-7 col-xs-12 active"
-                                                           required="required" type="text">
+                                                    <input type="text" name="diskripsi_buku" id="diskripsi_buku"
+                                                           required="required" class="form-control col-md-12 col-xs-12">
                                                 </div>
                                             </div>
-                                            {{--<div class="form-group">--}}
-                                                {{--<label class="control-label col-sm-3">--}}
-                                                    {{--Buku Kembali Peminjam</label>--}}
-                                                {{--<div class="col-sm-7">--}}
-                                                    {{--<input type="text" name="buku_tgl_kembali" id="buku_tgl_kembali"--}}
-                                                           {{--required="required" class="form-control col-md-12 col-xs-12">--}}
-                                                {{--</div>--}}
-                                            {{--</div>--}}
-
+                                            <div class="form-group">
+                                                <label class="control-label col-sm-3">
+                                                    Pengarang Buku</label>
+                                                <div class="col-sm-7">
+                                                    <input type="text" name="pengarang_buku" id="pengarang_buku"
+                                                           required="required" class="form-control col-md-12 col-xs-12">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="control-label col-sm-3">
+                                                    Tahun Terbit Buku </label>
+                                                <div class="col-sm-7">
+                                                    <input type="text" name="tahun_terbit_buku" id="tahun_terbit_buku"
+                                                           required="required" class="form-control col-md-12 col-xs-12">
+                                                </div>
+                                            </div>
                                             <div class="row row-sm form-group">
                                                 <div class="col-sm-offset-3 col-sm-6">
                                                     <input class="btn btn-outline btn-info" type="submit" id="Submit"
@@ -212,7 +192,7 @@
         <div class="col-md-12 col-sm-12 col-xs-12">
             <div class="x_panel">
                 <div class="x_title">
-                    <h2>Edit Peminjaman</h2>
+                    <h2>Edit Buku</h2>
                     <ul class="nav navbar-right panel_toolbox">
                         <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                         </li>
@@ -242,72 +222,61 @@
                                             <input type="hidden" name="id">
                                             <div class="form-group">
                                                 <label class="control-label col-sm-3">
-                                                    Kode Peminjaman </label>
+                                                    Kode Buku </label>
                                                 <div class="col-sm-7">
-                                                    <input type="text" name="kode_peminjaman" id="kode_peminjaman"
-                                                           required="required" class="form-control col-md-12 col-xs-12">
+                                                    <input type="text" name="kode_buku" id="kode_buku"
+                                                           class="form-control col-md-12 col-xs-12">
                                                 </div>
                                             </div>
                                             <div class="form-group">
                                                 <label class="control-label col-sm-3">
-                                                    Kelas</label>
+                                                    Kategori </label>
                                                 <div class="col-sm-7">
-                                                    <select type="text" name="kelas" id="kelas"
-                                                            required="required"
-                                                            class="form-control col-md-12 col-xs-12"
-                                                            onchange="getAnggota()">
-                                                        <option>Pilih Kelas</option>
-                                                        <option value="10">X</option>
-                                                        <option value="11">XI</option>
-                                                        <option value="12">XII</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-                                            <div class="form-group">
-                                                <label class="control-label col-sm-3">
-                                                    Anggota</label>
-                                                <div class="col-sm-7">
-                                                    <select type="text" name="id_anggota" id="id_anggota"
-                                                            required="required"
+                                                    <select type="text" name="id_kategori" id="id_kategori"
                                                             class="form-control col-md-12 col-xs-12">
                                                     </select>
                                                 </div>
                                             </div>
-
                                             <div class="form-group">
                                                 <label class="control-label col-sm-3">
-                                                    Buku</label>
+                                                    Judul Buku </label>
                                                 <div class="col-sm-7">
-                                                    <select type="text" name="id_buku" id="id_petugas"
-                                                            required="required"
-                                                            class="form-control col-md-12 col-xs-12">
-                                                    </select></div>
-                                            </div>
-                                            <div class="form-group">
-                                                <label class="control-label col-sm-3">
-                                                    Tanggal Peminjam</label>
-                                                <div class="col-sm-7">
-                                                    <input type="text" name="peminjam_tgl" id="peminjam_tgl"
-                                                           required="required" class="form-control col-md-12 col-xs-12">
+                                                    <input type="text" name="judul_buku" id="judul_buku"
+                                                           class="form-control col-md-12 col-xs-12">
                                                 </div>
                                             </div>
                                             <div class="form-group">
                                                 <label class="control-label col-sm-3">
-                                                    Tanggal Kembali Peminjam</label>
+                                                    Jumlah Buku </label>
                                                 <div class="col-sm-7">
-                                                    <input type="text" name="peminjam_tgl_kembali"
-                                                           id="peminjam_tgl_kembali"
-                                                           required="required" class="form-control col-md-12 col-xs-12">
+                                                    <input type="text" name="jumlah_buku" id="jumlah_buku"
+                                                           class="form-control col-md-12 col-xs-12">
                                                 </div>
                                             </div>
-                                            {{--<div class="form-group">--}}
-                                                {{--<label class="control-label col-sm-3">--}}
-                                                    {{--Buku Kembali Peminjam</label>--}}
-                                                {{--<div class="col-sm-7">--}}
-                                                    {{--<input type="text" name="buku_tgl_kembali" id="buku_tgl_kembali"--}}
-                                                           {{--required="required" class="form-control col-md-12 col-xs-12">--}}
-                                                {{--</div>--}}
-                                            {{--</div>--}}
+                                            <div class="form-group">
+                                                <label class="control-label col-sm-3">
+                                                    Deskripsi Buku </label>
+                                                <div class="col-sm-7">
+                                                    <input type="text" name="diskripsi_buku" id="diskripsi_buku"
+                                                           class="form-control col-md-12 col-xs-12">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="control-label col-sm-3">
+                                                    Pengarang Buku</label>
+                                                <div class="col-sm-7">
+                                                    <input type="text" name="pengarang_buku" id="pengarang_buku"
+                                                           class="form-control col-md-12 col-xs-12">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="control-label col-sm-3">
+                                                    Tahun Terbit Buku </label>
+                                                <div class="col-sm-7">
+                                                    <input type="text" name="tahun_terbit_buku" id="tahun_terbit_buku"
+                                                           class="form-control col-md-12 col-xs-12">
+                                                </div>
+                                            </div>
                                             <div class="row row-sm form-group">
                                                 <div class="col-sm-offset-3 col-sm-6">
                                                     <input class="btn btn-outline btn-info" type="submit"
@@ -330,6 +299,7 @@
             </div>
         </div>
     </div>
+
     {{--Modal--}}
 
     {{--Detail Modal--}}
@@ -359,18 +329,9 @@
         </div>
     </div>
 
-    {{--<script src="{!! asset('bower_components/jquery/dist/jquery.min.js') !!}"></script>--}}
+    <script src="{!! asset('assets/js/jquery.min.js') !!}"></script>
     <script>
         $(document).ready(function () {
-            $('.date-picker').daterangepicker({
-                startDate: moment(),
-                singleDatePicker: true,
-                format: "YYYY-MM-DD",
-                calender_style: "picker_4"
-            }, function (start, end, label) {
-                console.log(start.toISOString(), end.toISOString(), label);
-            });
-
             var currentRequest = null;
             $('#Create').hide();
             $('#Edit').hide();
@@ -378,20 +339,24 @@
             $("#Form-Create").submit(function (event) {
                 event.preventDefault();
                 var $form = $(this),
-                        kode_peminjaman = $form.find("input[name='kode_peminjaman']").val(),
-                        id_buku = $form.find("select[name='id_buku']").val(),
-                        id_anggota = $form.find("select[name='id_anggota']").val(),
-                        peminjam_tgl = $form.find("input[name='peminjam_tgl']").val(),
-                        peminjam_tgl_kembali = $form.find("input[name='peminjam_tgl_kembali']").val();
-//                buku_tgl_kembali = $form.find("input[name='buku_tgl_kembali']").val();
+                        kode_buku = $form.find("input[name='kode_buku']").val(),
+                        id_kategori = $form.find("select[name='id_kategori']").val(),
+                        judul_buku = $form.find("input[name='judul_buku']").val(),
+                        jumlah_buku = $form.find("input[name='jumlah_buku']").val(),
+                        diskripsi_buku = $form.find("input[name='diskripsi_buku']").val(),
+                        pengarang_buku = $form.find("input[name='pengarang_buku']").val(),
+                        tahun_terbit_buku = $form.find("input[name='tahun_terbit_buku']").val();
 //                $("#Form-Create").reset();
-                var posting = $.post('/peminjaman', {
-                    kode_peminjaman: kode_peminjaman,
-                    id_buku: id_buku,
-                    id_anggota: id_anggota,
-                    peminjam_tgl: peminjam_tgl,
-                    peminjam_tgl_kembali: peminjam_tgl_kembali,
-//                    buku_tgl_kembali: buku_tgl_kembali
+                var posting = $.post('/api/v1/buku/', {
+
+                    kode_buku: kode_buku,
+                    id_kategori: id_kategori,
+                    judul_buku: judul_buku,
+                    jumlah_buku: jumlah_buku,
+                    diskripsi_buku: diskripsi_buku,
+                    pengarang_buku: pengarang_buku,
+                    tahun_terbit_buku: tahun_terbit_buku
+
                 });
                 //Put the results in a div
                 posting.done(function (data) {
@@ -408,25 +373,25 @@
                 event.preventDefault();
                 var $form = $(this),
                         id = $form.find("input[name='id']").val(),
-                        kode_peminjaman = $form.find("input[name='kode_peminjaman']").val(),
-                        id_buku = $form.find("select[name='id_buku']").val(),
-                        id_anggota = $form.find("select[name='id_anggota']").val(),
-                        peminjam_tgl = $form.find("input[name='peminjam_tgl']").val(),
-                        peminjam_tgl_kembali = $form.find("input[name='peminjam_tgl_kembali']").val(),
-//                        buku_tgl_kembali = $form.find("input[name='buku_tgl_kembali']").val();
-
+                        kode_buku = $form.find("input[name='kode_buku']").val(),
+                        id_kategori = $form.find("select[name='id_kategori']").val(),
+                        judul_buku = $form.find("input[name='judul_buku']").val(),
+                        jumlah_buku = $form.find("input[name='jumlah_buku']").val(),
+                        diskripsi_buku = $form.find("input[name='diskripsi_buku']").val(),
+                        pengarang_buku = $form.find("input[name='pengarang_buku']").val(),
+                        tahun_terbit_buku = $form.find("input[name='tahun_terbit_buku']").val();
 
                 currentRequest = $.ajax({
                     method: "PUT",
-                    url: '/api/v1/peminjaman/' + id,
+                    url: '/api/v1/buku/' + id,
                     data: {
-                        kode_peminjaman: kode_peminjaman,
-//                                id_petugas: id_petugas,
-                        id_buku: id_buku,
-                        id_anggota: id_anggota,
-                        peminjam_tgl: peminjam_tgl,
-                        peminjam_tgl_kembali: peminjam_tgl_kembali,
-//                        buku_tgl_kembali: buku_tgl_kembali
+                        kode_buku: kode_buku,
+                        id_kategori: id_kategori,
+                        judul_buku: judul_buku,
+                        jumlah_buku: jumlah_buku,
+                        diskripsi_buku: diskripsi_buku,
+                        pengarang_buku: pengarang_buku,
+                        tahun_terbit_buku: tahun_terbit_buku
                     },
                     beforeSend: function () {
                         if (currentRequest != null) {
@@ -445,6 +410,12 @@
             });
         });
 
+        $(function () {
+            //tambah class active
+            $('#menu-buku').addClass('active');
+
+        });
+
         function Index() {
             $('#Create').hide();
             $('#Edit').hide();
@@ -459,42 +430,21 @@
             $('#Edit').hide();
             $('#Index').hide();
             $('#Create').show();
-            $(document).ready(function () {
-                $('#datepicker').daterangepicker({
-                    singleDatePicker: true,
-                    calender_style: "picker_4"
-                }, function (start, end, label) {
-                    console.log(start.toISOString(), end.toISOString(), label);
-                });
-            });
             document.getElementById("Form-Create").reset();
             document.getElementById("Form-Edit").reset();
-            getBuku();
+            getKategori();
+        }
+        function getKategori() {
+            $('#id_kategori').children().remove();
+            $.getJSON("/data-kategori", function (data) {
+                var jumlah = data.length;
+                $("#id_kategori").append("<option selected>Pilih Kategori</option>");
+                $.each(data.slice(0, jumlah), function (i, data) {
+                    $("#id_kategori").append("<option value='" + data.id + "'>" + data.nama_kategori + "</option>");
+                })
+            });
+        }
 
-//            getAnggota();
-        }
-        function getBuku() {
-            $('#id_buku').children().remove();
-            $.getJSON("/data-buku", function (data) {
-                var jumlah = data.length;
-                $("#id_buku").append("<option selected>Pilih Buku</option>");
-                $.each(data.slice(0, jumlah), function (i, data) {
-                    $("#id_buku").append("<option value='" + data.id + "'>" + data.judul_buku + "</option>");
-                })
-            });
-        }
-        function getAnggota() {
-            var $form = $("#Form-Create"),
-                    kelas = $form.find("select[name='kelas']").val();
-            $('#id_anggota').children().remove();
-            $.getJSON("/data-anggota-by-kelas/" + kelas, function (data) {
-                var jumlah = data.length;
-                $("#id_anggota").append("<option selected>Pilih Anggota</option>");
-                $.each(data.slice(0, jumlah), function (i, data) {
-                    $("#id_anggota").append("<option value='" + data.id + "'>" + data.kelas + "</option>");
-                })
-            });
-        }
         function getAjax() {
             $("#data-example").children().remove();
 
@@ -504,18 +454,22 @@
                 height: 0
             }, 500);
             setTimeout(function () {
-                $.getJSON("/api/v1/peminjaman", function (data) {
-                    var jumlah = data.data.length;
-                    $.each(data.data.slice(0, jumlah), function (i, data) {
+                $.getJSON("/data-buku", function (data) {
+                    var jumlah = data.length;
+                    $.each(data.slice(0, jumlah), function (i, data) {
                         $("#data-example").append("" +
                                 "<tr>" +
-                                "<td>" + data.kode_peminjaman + "</td>" +
-                                "<td>" + data.buku.judul_buku + "</td>" +
-//                                        "<td>" + data.petugas.nama_petugas + "</td>" +
-                                "<td>" + data.anggota.nama_anggota + "</td>" +
-                                "<td>" + data.peminjam_tgl + "</td>" +
-                                "<td>" + data.peminjam_tgl_kembali + "</td>" +
+                                "<td>" + data.kode_buku + "</td>" +
+                                "<td>" + data.kategori.nama_kategori + "</td>" +
+                                "<td>" + data.judul_buku + "</td>" +
+                                "<td>" + data.jumlah_buku + "</td>" +
+//                                "<td>" + data.diskripsi_buku + "</td>" +
+//                                "<td>" + data.pengarang_buku + "</td>" +
+//                                "<td>" + data.tahun_terbit_buku + "</td>" +
+
                                 "<td>" +
+//                                "<button type='button' class='btn btn-outline btn-primary' data-toggle='modal' data-target='#myModal'  " +
+//                                "onclick='Detail(" + data.id + ")'>Detail</button> " +
                                 "<button type='button' class='btn btn-outline btn-info' " +
                                 "onclick='Edit(\"" + data.id + "\")'>" +
                                 "<i class='glyphicon glyphicon-edit'></i></button> " +
@@ -533,48 +487,36 @@
             $('#Index').hide();
             $('#Create').hide();
             $('#Edit').hide();
-            $('#list').addClass('hide');
+//            $('#list').addClass('hide');
             document.getElementById("Form-Create").reset();
             document.getElementById("Form-Edit").reset();
 
             $.ajax({
                         method: "Get",
-                        url: '/api/v1/peminjaman/' + id,
+                        url: '/api/v1/buku/' + id,
                         data: {}
                     })
                     .done(function (data_edit) {
-                        console.log(data_edit.id);
 //                    var $form = $(this),
                         $("input[name='id']").val(data_edit.id);
-                        $("input[name='kode_peminjaman']").val(data_edit.kode_peminjaman);
-//                                $("input[name='id_petugas']").val(data_edit.id_petugas);
-                        $("input[name='id_anggota']").val(data_edit.id_anggota);
-                        $("input[name='peminjam_tgl']").val(data_edit.peminjam_tgl);
-                        $("input[name='peminjam_tgl_kembali']").val(data_edit.peminjam_tgl_kembali);
-//                        $("input[name='buku_tgl_kembali']").val(data_edit.buku_tgl_kembali);
-                        $.getJSON("/data-buku", function (data) {
+                        $("input[name='kode_buku']").val(data_edit.kode_buku);
+//                        $("input[name='id_kategori']").val(data.id_kategori);
+                        $("input[name='judul_buku']").val(data_edit.judul_buku);
+                        $("input[name='jumlah_buku']").val(data_edit.jumlah_buku);
+                        $("input[name='diskripsi_buku']").val(data_edit.diskripsi_buku);
+                        $("input[name='pengarang_buku']").val(data_edit.pengarang_buku);
+                        $("input[name='tahun_terbit_buku']").val(data_edit.tahun_terbit_buku);
+                        $.getJSON("/data-kategori", function (data) {
                             var jumlah = data.length;
                             $.each(data.slice(0, jumlah), function (i, data) {
-                                if (data_edit.buku.id == data.id) {
-                                    $("select[name='id_buku']").append("<option value='" + data.id + "' selected>" + data.judul_buku + "</option>");
+                                if (data_edit.kategori.id == data.id) {
+                                    $("select[name='id_kategori']").append("<option value='" + data.id + "' selected>" + data.nama_kategori + "</option>");
                                 }
                                 else {
-                                    $("select[name='id_buku']").append("<option value='" + data.id + "'>" + data.judul_buku + "</option>");
+                                    $("select[name='id_kategori']").append("<option value='" + data.id + "'>" + data.nama_kategori + "</option>");
                                 }
                             })
                         });
-                        $.getJSON("/data-anggota-by-kelas", function (data) {
-                            var jumlah = data.length;
-                            $.each(data.slice(0, jumlah), function (i, data) {
-                                if (data_edit.anggota.id == data.id) {
-                                    $("select[name='id_anggota']").append("<option value='" + data.id + "' selected>" + data.kelas + "</option>");
-                                }
-                                else {
-                                    $("select[name='id_anggota']").append("<option value='" + data.id + "'>" + data.kelas + "</option>");
-                                }
-                            })
-                        });
-
                         $('#Edit').show();
                     });
         }
@@ -583,7 +525,7 @@
             $("#modal-body").children().remove();
             $.ajax({
                 method: "GET",
-                url: '/peminjaman/' + id,
+                url: '/api/v1/buku/' + id,
                 data: {},
                 beforeSend: function () {
                     $('#loader-wrapper').show();
@@ -592,11 +534,13 @@
 //                    $('#loader').hide();
                     $("#loader-wrapper").hide();
                     $("#modal-body").append(
-                            "<tr><td> Kode Peminjaman </td><td> : </td><td>" + data.kode_peminjaman + "</td></tr>" +
-//                                    "<tr><td> Petugas </td><td> : </td><td>" + data.id_petugas + "</td></tr>" +
-                            "<tr><td> Anggota </td><td> : </td><td>" + data.id_anggota + "</td></tr>" +
-                            "<tr><td> Tanggal Peminjam </td><td> : </td><td>" + data.peminjam_tgl + "</td></tr>" +
-                            "<tr><td> Tanggal Kembali Peminjam </td><td> : </td><td>" + data.peminjam_tgl_kembali + "</td></tr>"
+                            "<tr><td> Kode Buku </td><td> : </td><td>" + data.kode_buku + "</td></tr>" +
+                            "<tr><td> Kategori </td><td> : </td><td>" + data.kategori.nama_kategori + "</td></tr>" +
+                            "<tr><td> Judul Buku </td><td> : </td><td>" + data.judul_buku + "</td></tr>" +
+                            "<tr><td> Jumlah Buku </td><td> : </td><td>" + data.jumlah_buku + "</td></tr>" +
+                            "<tr><td> Diskripsi Buku </td><td> : </td><td>" + data.diskripsi_buku + "</td></tr>" +
+                            "<tr><td> Pengarang Buku </td><td> : </td><td>" + data.pengarang_buku + "</td></tr>" +
+                            "<tr><td> Tahun Terbit Buku </td><td> : </td><td>" + data.tahun_terbit_buku + "</td></tr>"
                     );
                 }
             });
@@ -607,7 +551,7 @@
             if (result) {
                 $.ajax({
                             method: "DELETE",
-                            url: '/hapus-peminjaman/' + id,
+                            url: '/api/v1/buku/' + id,
                             data: {}
                         })
                         .done(function (data) {

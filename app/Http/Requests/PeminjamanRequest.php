@@ -15,22 +15,28 @@ class PeminjamanRequest extends Request
 {
 
     protected $attrs = [
+        'id_buku'              => 'id_buku',
         'id_petugas'           => 'id_petugas',
         'id_anggota'           => 'id_anggota',
         'kode_peminjaman'      => 'kode_peminjaman',
         'peminjam_tgl'         => 'peminjam_tgl',
         'peminjam_tgl_kembali' => 'peminjam_tgl_kembali',
+        'buku_tgl_kembali'     => 'buku_tgl_kembali',
+        'denda'                => 'denda',
 
     ];
 
     public function rules()
     {
         return [
+            'id_buku'              => '',
             'id_petugas'           => '',
             'id_anggota'           => '',
             'kode_peminjaman'      => '',
             'peminjam_tgl'         => '',
             'peminjam_tgl_kembali' => '',
+            'buku_tgl_kembali'     => '',
+            'denda'                => '',
         ];
     }
 
@@ -45,11 +51,14 @@ class PeminjamanRequest extends Request
         return [
             'success'    => false,
             'validation' => [
+                'id_buku'              => $message->first('id_buku'),
                 'id_petugas'           => $message->first('id_petugas'),
                 'id_anggota'           => $message->first('id_anggota'),
                 'kode_peminjaman'      => $message->first('kode_peminjaman'),
                 'peminjam_tgl'         => $message->first('peminjam_tgl'),
-                'peminjam_tgl_kembali' => $message->first('peminjam_tgl_kembali')
+                'peminjam_tgl_kembali' => $message->first('peminjam_tgl_kembali'),
+                'buku_tgl_kembali'     => $message->first('buku_tgl_kembali'),
+                'denda'                => $message->first('denda'),
             ],
         ];
     }

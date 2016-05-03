@@ -154,4 +154,24 @@ class AnggotaRepository extends AbstractRepository implements Paginable, Crudabl
             ->get();
         return $data;
     }
+
+    public function getListByKelas($kelas)
+    {
+        if ($kelas == 10) {
+            $data = $this->model
+                ->where('kelas', 'like', '%10%')
+                ->get();
+        }
+        if ($kelas == 11) {
+            $data = $this->model
+                ->where('kelas', 'like', '%11%')
+                ->get();
+        }
+        if ($kelas == 12) {
+            $data = $this->model
+                ->where('kelas', 'like', '%12%')
+                ->get();
+        }
+        return $data;
+    }
 }

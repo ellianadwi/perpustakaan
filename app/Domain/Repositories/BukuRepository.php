@@ -49,7 +49,7 @@ class BukuRepository extends AbstractRepository implements Paginable, Crudable
             $buku = parent::create(
                 [
                     'id_kategori'       => e($data['id_kategori']),
-                    'id_penerbit'       => e($data['id_penerbit']),
+//                    'id_penerbit'       => e($data['id_penerbit']),
                     'kode_buku'         => e($data['kode_buku']),
                     'judul_buku'        => e($data['judul_buku']),
                     'jumlah_buku'       => e($data['jumlah_buku']),
@@ -73,7 +73,7 @@ class BukuRepository extends AbstractRepository implements Paginable, Crudable
         try {
             $buku = parent::update($id, [
                 'id_kategori'       => e($data['id_kategori']),
-                'id_penerbit'       => e($data['id_penerbit']),
+//                'id_penerbit'       => e($data['id_penerbit']),
                 'kode_buku'         => e($data['kode_buku']),
                 'judul_buku'        => e($data['judul_buku']),
                 'jumlah_buku'       => e($data['jumlah_buku']),

@@ -59,13 +59,20 @@ class AnggotaController extends Controller
     {
         return $this->anggota->getPageList1(10, $request->input('page'), $column = ['*'], $key = '', $request->input('term'));
     }
+
     public function getPageList2(Request $request)
     {
         return $this->anggota->getPageList2(10, $request->input('page'), $column = ['*'], $key = '', $request->input('term'));
     }
+
     public function getPageList3(Request $request)
     {
         return $this->anggota->getPageList3(10, $request->input('page'), $column = ['*'], $key = '', $request->input('term'));
+    }
+
+    public function getListByKelas($kelas)
+    {
+        return $this->anggota->getListByKelas($kelas);
     }
 
 }

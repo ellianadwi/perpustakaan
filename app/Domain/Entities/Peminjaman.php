@@ -18,8 +18,9 @@ class Peminjaman extends Entities
     /**
      * @var array
      */
-    protected $fillable = ['id_petugas', 'id_anggota', 'kode_peminjaman', 'peminjam_tgl', 'peminjam_tgl_kembali'];
-    protected $with = ['petugas','anggota'];
+    protected $fillable = ['id_buku','id_petugas', 'id_anggota', 'kode_peminjaman', 'peminjam_tgl',
+        'peminjam_tgl_kembali','buku_tgl_kembali','denda','status'];
+    protected $with = ['buku','petugas','anggota'];
     /**
      * @var string
      */
@@ -37,6 +38,10 @@ class Peminjaman extends Entities
         'user_creator',
         'user_updater',
     ];
+    public function buku()
+    {
+        return $this->belongsTo('App\Domain\Entities\Buku', 'id_buku');
+    }
     public function petugas()
     {
         return $this->belongsTo('App\Domain\Entities\Petugas', 'id_petugas');

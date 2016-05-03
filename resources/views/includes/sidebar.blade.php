@@ -35,14 +35,11 @@
                         </li>
                     </ul>
                 </li>
-                <li><a><i class="fa fa-book"></i>Buku <span class="fa fa-chevron-down"></span></a>
-                    <ul class="nav child_menu" style="display: none">
-                        <li><a href="form.html">Umum</a></li>
-                        <li><a href="form_advanced.html">Kelas X</a></li>
-                        <li><a href="form_validation.html">Kelas XI</a></li>
-                        <li><a href="form_wizards.html">Kelas XII</a></li>
-                    </ul>
+                <li id="menu-buku">
+                    <a href="{!! route('page.buku') !!}">
+                        <i class="fa fa-book"></i>Buku</a>
                 </li>
+
                 <li id="menu-kategori">
                     <a href="{!! route('page.kategori') !!}">
                         <i class="fa fa-book"></i>Kategori</a>
@@ -68,8 +65,8 @@
                     <a href="{!! route('page.peminjaman') !!}"><i class="fa fa-book"></i>Peminjaman</a>
                 </li>
 
-                <li id="menu-detail-pinjam">
-                    <a href="{!! route('page.detail-pinjam') !!}"><i class="fa fa-book"></i>Detail Pinjam</a>
+                <li id="menu-pengembalian">
+                    <a href="{!! route('page.pengembalian') !!}"><i class="fa fa-book"></i>Pengembalian</a>
                 </li>
             </ul>
         </div>

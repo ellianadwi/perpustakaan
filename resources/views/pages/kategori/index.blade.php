@@ -279,7 +279,7 @@
 
                         currentRequest = $.ajax({
                             method: "PUT",
-                            url: '/kategori/' + id,
+                            url: '/api/v1/kategori/' + id,
                             data: {
                                 kode_kategori: kode_kategori,
                                 nama_kategori: nama_kategori
@@ -368,7 +368,7 @@
 
             $.ajax({
                         method: "Get",
-                        url: '/kategori/' + id,
+                        url: '/api/v1/kategori/' + id,
                         data: {}
                     })
                     .done(function (data) {
@@ -385,7 +385,7 @@
             $("#modal-body").children().remove();
             $.ajax({
                 method: "GET",
-                url: '/kategori/' + id,
+                url: '/api/v1/kategori/' + id,
                 data: {},
                 beforeSend: function () {
                     $('#loader-wrapper').show();
@@ -406,7 +406,7 @@
             if (result) {
                 $.ajax({
                             method: "DELETE",
-                            url: '/hapus-kategori/' + id,
+                            url: '/api/v1/kategori/' + id,
                             data: {}
                         })
                         .done(function (data) {

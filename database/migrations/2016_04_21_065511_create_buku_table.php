@@ -18,10 +18,12 @@ class CreateBukuTable extends Migration
             $table->string('id_penerbit');
             $table->string('kode_buku');
             $table->string('judul_buku');
-            $table->string('jumlah_buku');
+            $table->integer('jumlah_buku');
             $table->string('diskripsi_buku');
             $table->string('pengarang_buku');
-            $table->string('tahun_terbit_buku');
+            $table->integer('tahun_terbit_buku');
+            $table->integer('status');
+
             $table->timestamps();
             $table->primary('id');
         });

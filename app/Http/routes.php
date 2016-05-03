@@ -14,6 +14,19 @@
 Route::get('/', function () {
     return view('pages.index');
 });
+//Route::get('/login', function () {
+//    return view('login');
+//});
+Route::get('/', ['as' => 'login', 'uses' => 'PageController@getLogin']);
+Route::get('/login', ['as' => 'login', 'uses' => 'PageController@getLogin']);
+Route::get('/dashboard', ['as' => 'dashboard', 'uses' => 'PageController@dashboard']);
+
+Route::group(['namespace' => 'Auth', 'prefix' => 'api/v1'], function () {
+    Route::get('get-login', 'AuthController@getLogin');
+    Route::get('post-login', 'AuthController@getLogin');
+    Route::post('post-login', 'AuthController@postLogin');
+    Route::get('logout', 'AuthController@getLogout');
+});
 
 Route::get('/create-kategori', function () {
     return view('pages.kategori.create');
@@ -40,12 +53,16 @@ Route::put('kategori/{id}', 'KategoriController@update');
 Route::delete('hapus-kategori/{id}', 'KategoriController@destroy');
 
 Route::get('/data-kategori', 'KategoriController@getData');
+Route::get('/data-buku', 'BukuController@getData');
 
 
 Route::get('/kategori', ['as' => 'page.kategori', function () {
     return view('pages.kategori.index');
 }]);
 
+Route::get('/buku', ['as' => 'page.buku', function () {
+    return view('pages.buku.buku');
+}]);
 
 
 Route::get('peminjaman', 'PeminjamanController@index');
@@ -117,13 +134,18 @@ Route::get('/anggota-kelasxii', ['as' => 'page.kelasxii', function () {
     return view('pages.anggota.kelasxii');
 }]);
 
+Route::get('/data-peminjaman', ['as' => 'page.pengembalian', function () {
+    return view('pages.pengembalian');
+}]);
+
 Route::get('/data-anggota-x', 'AnggotaController@getPageList1');
 Route::get('/data-anggota-xi', 'AnggotaController@getPageList2');
 Route::get('/data-anggota-xii', 'AnggotaController@getPageList3');
+Route::get('/data-anggota-by-kelas/{kelas}', 'AnggotaController@getListByKelas');
 
 Route::get('/data-petugas', 'PetugasController@getData');
 
-Route::get('give-me-token',['as'=>'token','uses'=>'PageController@token']);
+Route::get('give-me-token', ['as' => 'token', 'uses' => 'PageController@token']);
 Route::group(['prefix' => 'api/v1'], function () {
     Route::resource('petugas', 'PetugasController');
     Route::resource('kategori', 'KategoriController');
@@ -131,6 +153,7 @@ Route::group(['prefix' => 'api/v1'], function () {
     Route::resource('anggota', 'AnggotaController');
     Route::resource('peminjaman', 'PeminjamanController');
     Route::resource('detail-pinjam', 'DetailPinjamController');
+    Route::put('kembalikan-buku/{id}', 'PeminjamanController@kembali');
 
 });
 //    Route::group(['namespace' => 'BiometricPejabat'], function () {
