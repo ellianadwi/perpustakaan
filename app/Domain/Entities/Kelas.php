@@ -4,32 +4,32 @@ namespace App\Domain\Entities;
 
 use Illuminate\Database\Eloquent\Model;
 
-
 /**
- * Class Anggota
+ * Class Kelas
  * @package App\Domain\Entities
  */
-class Anggota extends Entities
+class Kelas extends Entities
 {
     /**
      * @var string
      */
-    protected $table = 'anggota';
+    protected  $table = 'kelas';
 
     /**
      * @var array
      */
-    protected $fillable = ['kode_anggota', 'nama_anggota', 'alamat_anggota', 'telp_anggota', 'id_kelas'];
+    protected $fillable = ['kelas', 'jurusan'];
 
-    protected $with = ['kelas'];
     /**
      * @var string
      */
     protected $primaryKey = 'id';
+
     /**
      * @var string
      */
-    public static $tags = 'anggota';
+    public static $tags = 'kelas';
+
     /**
      * @var array
      */
@@ -37,11 +37,7 @@ class Anggota extends Entities
         'created_at',
         'updated_at',
         'user_creator',
-        'user_updater',
+        'user_updater'
     ];
 
-    public function kelas()
-    {
-        return $this->belongsTo('App\Domain\Entities\Kelas', 'id_kelas');
-    }
 }

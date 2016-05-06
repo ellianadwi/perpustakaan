@@ -22,7 +22,10 @@ class BukuController extends Controller
 
     public function __construct(BukuRepository $buku)
     {
+
+        $this->middleware('auth');
         $this->buku = $buku;
+
     }
 
     public function index(Request $request)
@@ -53,5 +56,9 @@ class BukuController extends Controller
     public function getData($limit = 10)
     {
         return $this->buku->getData();
+    }
+    public function getListByKategori($kategori)
+    {
+        return $this->buku->getListByKategori($kategori);
     }
 }

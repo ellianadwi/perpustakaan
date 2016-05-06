@@ -142,8 +142,11 @@ Route::get('/data-anggota-x', 'AnggotaController@getPageList1');
 Route::get('/data-anggota-xi', 'AnggotaController@getPageList2');
 Route::get('/data-anggota-xii', 'AnggotaController@getPageList3');
 Route::get('/data-anggota-by-kelas/{kelas}', 'AnggotaController@getListByKelas');
+Route::get('/data-buku-by-kategori/{kategori}', 'BukuController@getListByKategori');
+
 
 Route::get('/data-petugas', 'PetugasController@getData');
+Route::get('/data-kelas', 'KelasController@getData');
 
 Route::get('give-me-token', ['as' => 'token', 'uses' => 'PageController@token']);
 Route::group(['prefix' => 'api/v1'], function () {
@@ -153,9 +156,7 @@ Route::group(['prefix' => 'api/v1'], function () {
     Route::resource('anggota', 'AnggotaController');
     Route::resource('peminjaman', 'PeminjamanController');
     Route::resource('detail-pinjam', 'DetailPinjamController');
+    Route::resource('kelas', 'KelasController');
     Route::put('kembalikan-buku/{id}', 'PeminjamanController@kembali');
 
 });
-//    Route::group(['namespace' => 'BiometricPejabat'], function () {
-//        Route::resource('biometric-pejabat', 'BiometricPejabatController');
-//    });

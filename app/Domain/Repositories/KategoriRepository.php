@@ -124,4 +124,5 @@ class KategoriRepository extends AbstractRepository implements Paginable, Crudab
             ->get();
         return $data;
     }
+
 }

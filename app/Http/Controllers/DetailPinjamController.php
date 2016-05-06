@@ -22,6 +22,7 @@ class DetailPinjamController extends Controller
 
     public function __construct(DetailPinjamRepository $detail_pinjam)
     {
+        $this->middleware('auth');
         $this->detail_pinjam = $detail_pinjam;
     }
 

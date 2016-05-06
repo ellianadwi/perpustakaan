@@ -136,4 +136,13 @@ class BukuRepository extends AbstractRepository implements Paginable, Crudable
             ->get();
         return $data;
     }
+
+    public function getListByKategori($kategori)
+    {
+        $data = $this->model
+            ->where('id_kategori', $kategori)
+            ->get();
+
+        return $data;
+    }
 }

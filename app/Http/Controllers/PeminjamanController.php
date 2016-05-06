@@ -23,6 +23,7 @@ class PeminjamanController extends Controller
     public function __construct(PeminjamanRepository $peminjaman)
     {
         $this->peminjaman = $peminjaman;
+        $this->middleware('auth');
     }
 
     public function index(Request $request)

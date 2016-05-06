@@ -23,6 +23,7 @@ class PetugasController extends Controller
     public function __construct(PetugasRepository $petugas)
     {
         $this->petugas = $petugas;
+        $this->middleware('auth');
     }
 
     public function index(Request $request)

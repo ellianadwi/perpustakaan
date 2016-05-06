@@ -43,6 +43,15 @@
                                 <i class="glyphicon glyphicon-refresh"></i>
                             </button>
                               </span>
+
+                                        <div class="col-sm-4">
+                                            <select id="id_kategori"
+                                                    class="form-control"
+                                                    aria-controls="example" size="1"
+                                                    name="category_main"
+                                                    onchange="getAjax(this.value)">
+                                            </select>
+                                        </div>
                                     </div>
                                     <div class="col-sm-4">
                                         <div class="input-group pull-right">
@@ -64,6 +73,7 @@
                                             <th>Kategori</th>
                                             <th>Judul Buku</th>
                                             <th>Jumlah Buku</th>
+                                            <th>Rak</th>
                                             <th>Aksi</th>
                                         </tr>
                                         </thead>
@@ -140,6 +150,14 @@
                                                     Jumlah Buku </label>
                                                 <div class="col-sm-7">
                                                     <input type="text" name="jumlah_buku" id="jumlah_buku"
+                                                           required="required" class="form-control col-md-12 col-xs-12">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="control-label col-sm-3">
+                                                    Rak </label>
+                                                <div class="col-sm-7">
+                                                    <input type="text" name="rak" id="rak"
                                                            required="required" class="form-control col-md-12 col-xs-12">
                                                 </div>
                                             </div>
@@ -255,6 +273,14 @@
                                             </div>
                                             <div class="form-group">
                                                 <label class="control-label col-sm-3">
+                                                    Rak </label>
+                                                <div class="col-sm-7">
+                                                    <input type="text" name="rak" id="rak"
+                                                           class="form-control col-md-12 col-xs-12">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="control-label col-sm-3">
                                                     Deskripsi Buku </label>
                                                 <div class="col-sm-7">
                                                     <input type="text" name="diskripsi_buku" id="diskripsi_buku"
@@ -335,7 +361,7 @@
             var currentRequest = null;
             $('#Create').hide();
             $('#Edit').hide();
-
+getKategori();
             $("#Form-Create").submit(function (event) {
                 event.preventDefault();
                 var $form = $(this),
@@ -343,6 +369,7 @@
                         id_kategori = $form.find("select[name='id_kategori']").val(),
                         judul_buku = $form.find("input[name='judul_buku']").val(),
                         jumlah_buku = $form.find("input[name='jumlah_buku']").val(),
+                        rak = $form.find("input[name='rak']").val(),
                         diskripsi_buku = $form.find("input[name='diskripsi_buku']").val(),
                         pengarang_buku = $form.find("input[name='pengarang_buku']").val(),
                         tahun_terbit_buku = $form.find("input[name='tahun_terbit_buku']").val();
@@ -353,6 +380,7 @@
                     id_kategori: id_kategori,
                     judul_buku: judul_buku,
                     jumlah_buku: jumlah_buku,
+                    rak: rak,
                     diskripsi_buku: diskripsi_buku,
                     pengarang_buku: pengarang_buku,
                     tahun_terbit_buku: tahun_terbit_buku
@@ -377,6 +405,7 @@
                         id_kategori = $form.find("select[name='id_kategori']").val(),
                         judul_buku = $form.find("input[name='judul_buku']").val(),
                         jumlah_buku = $form.find("input[name='jumlah_buku']").val(),
+                        rak = $form.find("input[name='rak']").val(),
                         diskripsi_buku = $form.find("input[name='diskripsi_buku']").val(),
                         pengarang_buku = $form.find("input[name='pengarang_buku']").val(),
                         tahun_terbit_buku = $form.find("input[name='tahun_terbit_buku']").val();
@@ -389,6 +418,7 @@
                         id_kategori: id_kategori,
                         judul_buku: judul_buku,
                         jumlah_buku: jumlah_buku,
+                        rak: rak,
                         diskripsi_buku: diskripsi_buku,
                         pengarang_buku: pengarang_buku,
                         tahun_terbit_buku: tahun_terbit_buku
@@ -445,42 +475,84 @@
             });
         }
 
-        function getAjax() {
-            $("#data-example").children().remove();
+        function getAjax(id) {
+            if(id=="" || id){
 
-            $("#loader2").delay(2000).animate({
-                opacity: 0,
-                width: 0,
-                height: 0
-            }, 500);
-            setTimeout(function () {
-                $.getJSON("/data-buku", function (data) {
-                    var jumlah = data.length;
-                    $.each(data.slice(0, jumlah), function (i, data) {
-                        $("#data-example").append("" +
-                                "<tr>" +
-                                "<td>" + data.kode_buku + "</td>" +
-                                "<td>" + data.kategori.nama_kategori + "</td>" +
-                                "<td>" + data.judul_buku + "</td>" +
-                                "<td>" + data.jumlah_buku + "</td>" +
+                $("#data-example").children().remove();
+
+                $("#loader2").delay(2000).animate({
+                    opacity: 0,
+                    width: 0,
+                    height: 0
+                }, 500);
+                setTimeout(function () {
+                    $.getJSON("/data-buku", function (data) {
+                        var jumlah = data.length;
+                        $.each(data.slice(0, jumlah), function (i, data) {
+                            $("#data-example").append("" +
+                                    "<tr>" +
+                                    "<td>" + data.kode_buku + "</td>" +
+                                    "<td>" + data.kategori.nama_kategori + "</td>" +
+                                    "<td>" + data.judul_buku + "</td>" +
+                                    "<td>" + data.jumlah_buku + "</td>" +
+                                    "<td>" + data.rak + "</td>" +
 //                                "<td>" + data.diskripsi_buku + "</td>" +
 //                                "<td>" + data.pengarang_buku + "</td>" +
 //                                "<td>" + data.tahun_terbit_buku + "</td>" +
 
-                                "<td>" +
+                                    "<td>" +
 //                                "<button type='button' class='btn btn-outline btn-primary' data-toggle='modal' data-target='#myModal'  " +
 //                                "onclick='Detail(" + data.id + ")'>Detail</button> " +
-                                "<button type='button' class='btn btn-outline btn-info' " +
-                                "onclick='Edit(\"" + data.id + "\")'>" +
-                                "<i class='glyphicon glyphicon-edit'></i></button> " +
-                                "<button type='button' class='btn btn-outline btn-danger'  " +
-                                "onclick='Hapus(\"" + data.id + "\")'> " +
-                                "<i class='glyphicon glyphicon-trash'></i></button>" +
-                                "</td>" +
-                                "</tr>");
-                    })
-                });
-            }, 2200);
+                                    "<button type='button' class='btn btn-outline btn-info' " +
+                                    "onclick='Edit(\"" + data.id + "\")'>" +
+                                    "<i class='glyphicon glyphicon-edit'></i></button> " +
+                                    "<button type='button' class='btn btn-outline btn-danger'  " +
+                                    "onclick='Hapus(\"" + data.id + "\")'> " +
+                                    "<i class='glyphicon glyphicon-trash'></i></button>" +
+                                    "</td>" +
+                                    "</tr>");
+                        })
+                    });
+                }, 2200);
+            }else{
+
+                $("#data-example").children().remove();
+
+                $("#loader2").delay(2000).animate({
+                    opacity: 0,
+                    width: 0,
+                    height: 0
+                }, 500);
+                setTimeout(function () {
+                    $.getJSON("/data-buku-by-kategori/"+id, function (data) {
+                        var jumlah = data.length;
+                        $.each(data.slice(0, jumlah), function (i, data) {
+                            $("#data-example").append("" +
+                                    "<tr>" +
+                                    "<td>" + data.kode_buku + "</td>" +
+                                    "<td>" + data.kategori.nama_kategori + "</td>" +
+                                    "<td>" + data.judul_buku + "</td>" +
+                                    "<td>" + data.jumlah_buku + "</td>" +
+                                    "<td>" + data.rak + "</td>" +
+//                                "<td>" + data.diskripsi_buku + "</td>" +
+//                                "<td>" + data.pengarang_buku + "</td>" +
+//                                "<td>" + data.tahun_terbit_buku + "</td>" +
+
+                                    "<td>" +
+//                                "<button type='button' class='btn btn-outline btn-primary' data-toggle='modal' data-target='#myModal'  " +
+//                                "onclick='Detail(" + data.id + ")'>Detail</button> " +
+                                    "<button type='button' class='btn btn-outline btn-info' " +
+                                    "onclick='Edit(\"" + data.id + "\")'>" +
+                                    "<i class='glyphicon glyphicon-edit'></i></button> " +
+                                    "<button type='button' class='btn btn-outline btn-danger'  " +
+                                    "onclick='Hapus(\"" + data.id + "\")'> " +
+                                    "<i class='glyphicon glyphicon-trash'></i></button>" +
+                                    "</td>" +
+                                    "</tr>");
+                        })
+                    });
+                }, 2200);
+            }
         }
 
         function Edit(id) {
@@ -503,6 +575,7 @@
 //                        $("input[name='id_kategori']").val(data.id_kategori);
                         $("input[name='judul_buku']").val(data_edit.judul_buku);
                         $("input[name='jumlah_buku']").val(data_edit.jumlah_buku);
+                        $("input[name='rak']").val(data_edit.rak);
                         $("input[name='diskripsi_buku']").val(data_edit.diskripsi_buku);
                         $("input[name='pengarang_buku']").val(data_edit.pengarang_buku);
                         $("input[name='tahun_terbit_buku']").val(data_edit.tahun_terbit_buku);
@@ -538,6 +611,7 @@
                             "<tr><td> Kategori </td><td> : </td><td>" + data.kategori.nama_kategori + "</td></tr>" +
                             "<tr><td> Judul Buku </td><td> : </td><td>" + data.judul_buku + "</td></tr>" +
                             "<tr><td> Jumlah Buku </td><td> : </td><td>" + data.jumlah_buku + "</td></tr>" +
+                            "<tr><td> Rak </td><td> : </td><td>" + data.rak + "</td></tr>" +
                             "<tr><td> Diskripsi Buku </td><td> : </td><td>" + data.diskripsi_buku + "</td></tr>" +
                             "<tr><td> Pengarang Buku </td><td> : </td><td>" + data.pengarang_buku + "</td></tr>" +
                             "<tr><td> Tahun Terbit Buku </td><td> : </td><td>" + data.tahun_terbit_buku + "</td></tr>"
@@ -560,6 +634,7 @@
                         });
             }
         }
+
     </script>
     </body>
 @endsection

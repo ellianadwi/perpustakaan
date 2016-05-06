@@ -19,7 +19,7 @@ class AnggotaRequest extends Request
         'nama_anggota'   => 'nama_anggota',
         'alamat_anggota' => 'alamat_anggota',
         'telp_anggota'   => 'telp_anggota',
-        'kelas'          => 'kelas',
+        'id_kelas'          => 'id_kelas',
     ];
 
     public function rules()
@@ -29,7 +29,7 @@ class AnggotaRequest extends Request
             'nama_anggota'   => '',
             'alamat_anggota' => '',
             'telp_anggota'   => '',
-            'kelas'          => '',
+            'id_kelas'          => '',
         ];
     }
 
@@ -48,7 +48,7 @@ class AnggotaRequest extends Request
                 'nama_anggota'   => $message->first('nama_anggota'),
                 'alamat_anggota' => $message->first('alamat_anggota'),
                 'telp_anggota'   => $message->first('telp_anggota'),
-                'kelas'          => $message->first('kelas')
+                'id_kelas'          => $message->first('id_kelas')
             ],
         ];
     }

@@ -43,15 +43,34 @@ class PeminjamanRepository extends AbstractRepository implements Paginable, Crud
         return $peminjaman;
     }
 
+    function id()
+    {
+        $cari = \DB::table('peminjaman')
+            ->count();
+        $jml = $cari + 1;
+        if ($jml == 1) {
+            $kode_peminjaman = 'P0001';
+        } else if ($jml < 10) {
+            $kode_peminjaman = 'P000' . $jml;
+        } else if ($jml < 100) {
+            $kode_peminjaman = 'P00' . $jml;
+        } else if ($jml < 1000) {
+            $kode_peminjaman = 'P0' . $jml;
+        }
+
+        return $kode_peminjaman;
+    }
+
     public function create(array $data)
     {
         try {
+            $kode_peminjaman = $this->id();
             $peminjaman = parent::create(
                 [
                     'id_buku'              => e($data['id_buku']),
                     'id_petugas'           => 1,
                     'id_anggota'           => e($data['id_anggota']),
-                    'kode_peminjaman'      => e($data['kode_peminjaman']),
+                    'kode_peminjaman'      => $kode_peminjaman,
                     'peminjam_tgl'         => e($data['peminjam_tgl']),
                     'peminjam_tgl_kembali' => e($data['peminjam_tgl_kembali']),
 //                    'buku_tgl_kembali'     => e($data['buku_tgl_kembali']),
@@ -165,4 +184,5 @@ class PeminjamanRepository extends AbstractRepository implements Paginable, Crud
             return $this->createError();
         }
     }
+
 }

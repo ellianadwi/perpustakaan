@@ -52,7 +52,7 @@ class AnggotaRepository extends AbstractRepository implements Paginable, Crudabl
                     'nama_anggota'   => e($data['nama_anggota']),
                     'alamat_anggota' => e($data['alamat_anggota']),
                     'telp_anggota'   => e($data['telp_anggota']),
-                    'kelas'          => e($data['kelas']),
+                    'id_kelas'       => e($data['id_kelas']),
                 ]
             );
             // flush cache with tags
@@ -73,7 +73,7 @@ class AnggotaRepository extends AbstractRepository implements Paginable, Crudabl
                 'nama_anggota'   => e($data['nama_anggota']),
                 'alamat_anggota' => e($data['alamat_anggota']),
                 'telp_anggota'   => e($data['telp_anggota']),
-                'kelas'          => e($data['kelas']),
+                'id_kelas'       => e($data['id_kelas']),
             ]);
 
             // flush cache with tags
@@ -108,7 +108,7 @@ class AnggotaRepository extends AbstractRepository implements Paginable, Crudabl
     public function getByPage($limit = 10, $page = 1, array $column = ['*'], $field, $search = '')
     {
         // set key
-        $key = 'anggota-get-by-page' . $limit . $page . $search;
+        $key = 'anggota-get-by-page-' . $limit . $page . $search;
 
         // has section and key
         if ($this->cache->has(Anggota::$tags, $key)) {
@@ -117,7 +117,7 @@ class AnggotaRepository extends AbstractRepository implements Paginable, Crudabl
 
         // query to sql
         $anggota = parent::getByPage($limit, $page, $column, 'nama_anggota', $search);
-
+//        $anggota = $this->model->get();
         // store to cache
         $this->cache->put(Anggota::$tags, $key, $anggota, 10);
 
@@ -157,21 +157,26 @@ class AnggotaRepository extends AbstractRepository implements Paginable, Crudabl
 
     public function getListByKelas($kelas)
     {
-        if ($kelas == 10) {
-            $data = $this->model
-                ->where('kelas', 'like', '%10%')
-                ->get();
-        }
-        if ($kelas == 11) {
-            $data = $this->model
-                ->where('kelas', 'like', '%11%')
-                ->get();
-        }
-        if ($kelas == 12) {
-            $data = $this->model
-                ->where('kelas', 'like', '%12%')
-                ->get();
-        }
+//        if ($kelas == 10) {
+//            $data = $this->model
+//                ->where('id_kelas', 'like', '%10%')
+//                ->get();
+//        }
+//        if ($kelas == 11) {
+//            $data = $this->model
+//                ->where('id_kelas', 'like', '%11%')
+//                ->get();
+//        }
+//        if ($kelas == 12) {
+//            $data = $this->model
+//                ->where('id_kelas', 'like', '%12%')
+//                ->get();
+//        }
+
+        $data = $this->model
+            ->where('id_kelas', $kelas)
+            ->get();
+
         return $data;
     }
 }

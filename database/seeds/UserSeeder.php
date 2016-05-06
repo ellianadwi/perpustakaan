@@ -13,7 +13,7 @@ class UserSeeder extends Seeder
     {
         DB::table('users')->truncate();
         DB::table('users')->insert([
-            ['id' => 1, 'name' => 'elliana', 'email' => 'admin@dan.com', 'password' => bcrypt('qwerty'), 'created_at' => \Carbon\Carbon::now()],
+            ['id' => 1, 'name' => 'elliana', 'email' => 'ellianadwi@gmail.com', 'password' => bcrypt('qwerty'), 'created_at' => \Carbon\Carbon::now()],
         ]);
     }
 }

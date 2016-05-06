@@ -22,7 +22,9 @@ class AnggotaController extends Controller
 
     public function __construct(AnggotaRepository $anggota)
     {
+        $this->middleware('auth');
         $this->anggota = $anggota;
+
     }
 
     public function index(Request $request)
@@ -50,7 +52,7 @@ class AnggotaController extends Controller
         return $this->anggota->delete($id);
     }
 
-    public function getData($limit = 10)
+    public function getData()
     {
         return $this->anggota->getData();
     }

@@ -22,8 +22,8 @@ class CreateBukuTable extends Migration
             $table->string('diskripsi_buku');
             $table->string('pengarang_buku');
             $table->integer('tahun_terbit_buku');
+            $table->integer('rak');
             $table->integer('status');
-
             $table->timestamps();
             $table->primary('id');
         });
