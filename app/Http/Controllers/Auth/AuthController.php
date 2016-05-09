@@ -7,8 +7,6 @@ use App\Domain\Entities\User;
 use Illuminate\Http\Request;
 use Validator;
 use App\Http\Controllers\Controller;
-use Illuminate\Foundation\Auth\ThrottlesLogins;
-use Illuminate\Foundation\Auth\AuthenticatesAndRegistersUsers;
 use Illuminate\Contracts\Auth\Guard;
 use Illuminate\Support\Facades\Auth;
 
@@ -107,6 +105,7 @@ class AuthController extends Controller
 
     public function getLogout()
     {
+        session()->flush();
         $this->auth->logout();
 
         return redirect()->route('login');

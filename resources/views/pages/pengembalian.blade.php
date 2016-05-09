@@ -66,6 +66,7 @@
                                             <th>Anggota</th>
                                             <th>Tanggal Pinjaman</th>
                                             <th>Tanggal Kembali Pinjaman</th>
+                                            <th>denda</th>
                                             <th>Aksi</th>
                                         </tr>
                                         </thead>
@@ -270,7 +271,7 @@
                                                 <label class="control-label col-sm-3">
                                                     Buku</label>
                                                 <div class="col-sm-7">
-                                                    <select type="text" name="id_buku" id="id_petugas"
+                                                    <select type="text" name="id_buku" id="id_buku"
                                                             required="required"
                                                             class="form-control col-md-12 col-xs-12">
                                                     </select></div>
@@ -486,6 +487,11 @@
                 $.getJSON("/api/v1/peminjaman", function (data) {
                     var jumlah = data.data.length;
                     $.each(data.data.slice(0, jumlah), function (i, data) {
+                        if (data.denda < 0) {
+                            var denda = '0';
+                        } else {
+                            var denda = data.denda;
+                        }
                         if (data.status == 1) {
                             $("#data-example").append("" +
                                     "<tr>" +
@@ -495,10 +501,11 @@
                                     "<td>" + data.anggota.nama_anggota + "</td>" +
                                     "<td>" + data.peminjam_tgl + "</td>" +
                                     "<td>" + data.peminjam_tgl_kembali + "</td>" +
+                                    "<td>" + denda + "</td>" +
                                     "<td>" +
                                     "<button type='button' class='btn btn-outline btn-info' " +
                                     "onclick='Kembali(\"" + data.id + "\")'>" +
-                                    "Kembalikan Buku Saya</button> " +
+                                    "Kembali</button> " +
                                     "</td>" +
                                     "</tr>");
                         }
@@ -511,8 +518,9 @@
                                     "<td>" + data.anggota.nama_anggota + "</td>" +
                                     "<td>" + data.peminjam_tgl + "</td>" +
                                     "<td>" + data.peminjam_tgl_kembali + "</td>" +
+                                    "<td>" + denda + "</td>" +
                                     "<td>" +
-                                    "<button type='button' class='btn btn-outline btn-info' " +
+                                    "<button type='button' class='btn btn-outline btn-info' data-toggle='modal' data-target='#myModal'" +
                                     "onclick='Detail(\"" + data.id + "\")'>" +
                                     "Detail</button> " +
                                     "</td>" +
@@ -602,18 +610,22 @@
                 method: "GET",
                 url: '/api/v1/peminjaman/' + id,
                 data: {},
+
                 beforeSend: function () {
                     $('#loader-wrapper').show();
                 },
                 success: function (data) {
 //                    $('#loader').hide();
                     $("#loader-wrapper").hide();
+
                     $("#modal-body").append(
+
                             "<tr><td> Kode Peminjaman </td><td> : </td><td>" + data.kode_peminjaman + "</td></tr>" +
 //                                    "<tr><td> Petugas </td><td> : </td><td>" + data.id_petugas + "</td></tr>" +
                             "<tr><td> Anggota </td><td> : </td><td>" + data.id_anggota + "</td></tr>" +
                             "<tr><td> Tanggal Peminjam </td><td> : </td><td>" + data.peminjam_tgl + "</td></tr>" +
-                            "<tr><td> Tanggal Kembali Peminjam </td><td> : </td><td>" + data.peminjam_tgl_kembali + "</td></tr>"
+                            "<tr><td> Tanggal Kembali Peminjam </td><td> : </td><td>" + data.peminjam_tgl_kembali + "</td></tr>" +
+                            "<tr><td> Denda </td><td> : </td><td>" + data.denda + "</td></tr>"
                     );
                 }
             });

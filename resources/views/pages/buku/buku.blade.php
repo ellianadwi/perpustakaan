@@ -39,7 +39,7 @@
                                 </a>
                                 </span>
                                     <span tooltip="Refresh data">
-                            <button md-ink-ripple class="btn btn-sm btn-default" onclick="getAjax()">
+                            <button md-ink-ripple class="btn btn-sm btn-default" onclick="getAjax(0)">
                                 <i class="glyphicon glyphicon-refresh"></i>
                             </button>
                               </span>
@@ -361,7 +361,7 @@
             var currentRequest = null;
             $('#Create').hide();
             $('#Edit').hide();
-getKategori();
+            getKategori();
             $("#Form-Create").submit(function (event) {
                 event.preventDefault();
                 var $form = $(this),
@@ -453,7 +453,7 @@ getKategori();
             $("#data-example").children().remove();
             document.getElementById("Form-Create").reset();
             document.getElementById("Form-Edit").reset();
-            getAjax();
+            getAjax(0);
         }
 
         function Create() {
@@ -476,7 +476,7 @@ getKategori();
         }
 
         function getAjax(id) {
-            if(id=="" || id){
+            if(id=="" || id==0){
 
                 $("#data-example").children().remove();
 

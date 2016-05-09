@@ -533,23 +533,37 @@
                 $.getJSON("/api/v1/peminjaman", function (data) {
                     var jumlah = data.data.length;
                     $.each(data.data.slice(0, jumlah), function (i, data) {
-                        $("#data-example").append("" +
-                                "<tr>" +
-                                "<td>" + data.kode_peminjaman + "</td>" +
-                                "<td>" + data.buku.judul_buku + "</td>" +
+                        if (data.status == 1) {
+                            $("#data-example").append("" +
+                                    "<tr>" +
+                                    "<td>" + data.kode_peminjaman + "</td>" +
+                                    "<td>" + data.buku.judul_buku + "</td>" +
 //                                        "<td>" + data.petugas.nama_petugas + "</td>" +
-                                "<td>" + data.anggota.nama_anggota + "</td>" +
-                                "<td>" + data.peminjam_tgl + "</td>" +
-                                "<td>" + data.peminjam_tgl_kembali + "</td>" +
-//                                "<td>" +
-//                                "<button type='button' class='btn btn-outline btn-info' " +
-//                                "onclick='Edit(\"" + data.id + "\")'>" +
-//                                "<i class='glyphicon glyphicon-edit'></i></button> " +
-//                                "<button type='button' class='btn btn-outline btn-danger'  " +
-//                                "onclick='Hapus(\"" + data.id + "\")'> " +
-//                                "<i class='glyphicon glyphicon-trash'></i></button>" +
-//                                "</td>" +
-                                "</tr>");
+                                    "<td>" + data.anggota.nama_anggota + "</td>" +
+                                    "<td>" + data.peminjam_tgl + "</td>" +
+                                    "<td>" + data.peminjam_tgl_kembali + "</td>" +
+                                    "<td class='col-md-1'>" +
+                                     "<span class='label orange-800 ng-scope' " +
+                                    "'>Belum Dikembalikan</span> " +
+                                    "</td>" +
+                                    "</tr>");
+                        }
+                        if (data.status == 0) {
+                            $("#data-example").append("" +
+                                    "<tr>" +
+                                    "<td>" + data.kode_peminjaman + "</td>" +
+                                    "<td>" + data.buku.judul_buku + "</td>" +
+//                                        "<td>" + data.petugas.nama_petugas + "</td>" +
+                                    "<td>" + data.anggota.nama_anggota + "</td>" +
+                                    "<td>" + data.peminjam_tgl + "</td>" +
+                                    "<td>" + data.peminjam_tgl_kembali + "</td>" +
+                                    "<td class='col-md-1'>" +
+                                    "<span class='btn btn-outline btn-primary'" +
+                                    "'>Sudah Dikembalikan</span> " +
+
+                                    "</td>" +
+                                    "</tr>");
+                        }
                     })
                 });
             }, 2200);
