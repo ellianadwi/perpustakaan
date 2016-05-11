@@ -29,6 +29,6 @@ class PageController extends Controller
 
     public function dashboard()
     {
-        return view('pages.index');
+        return view('pages.admin.index');
     }
 }

@@ -54,14 +54,14 @@ class AuthController extends Controller
      * @param  array $data
      * @return \Illuminate\Contracts\Validation\Validator
      */
-    protected function validator(array $data)
-    {
-        return Validator::make($data, [
-            'name'     => 'required|max:255',
-            'email'    => 'required|email|max:255|unique:users',
-            'password' => 'required|min:6|confirmed',
-        ]);
-    }
+//    protected function validator(array $data)
+//    {
+//        return Validator::make($data, [
+//            'name'     => 'required|max:255',
+//            'email'    => 'required|email|max:255|unique:users',
+//            'password' => 'required|min:6|confirmed',
+//        ]);
+//    }
 
     /**
      * Create a new user instance after a valid registration.
@@ -94,7 +94,7 @@ class AuthController extends Controller
             // cek apakah levelnya kurang dari atau sama dengan 100
 
 //            return 'Authenticated';
-            return redirect()->route('dashboard');
+            return redirect()->route('/dashboard');
 
         }
         session()->flash('auth_message', 'Kombinasi email dan password salah!');

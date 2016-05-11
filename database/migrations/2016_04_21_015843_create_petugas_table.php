@@ -16,6 +16,8 @@ class CreatePetugasTable extends Migration
             $table->string('id',50);
             $table->string('kode_petugas');
             $table->string('nama_petugas');
+            $table->string('email')->unique();
+            $table->string('password');
             $table->timestamps();
             $table->primary('id');
         });

@@ -17,6 +17,8 @@ class PetugasRequest extends Request
     protected $attrs = [
         'kode_petugas' => 'kode_petugas',
         'nama_petugas' => 'nama_petugas',
+        'email'        => 'email',
+        'password'     => 'password',
     ];
 
     public function rules()
@@ -24,6 +26,8 @@ class PetugasRequest extends Request
         return [
             'kode_petugas' => 'required',
             'nama_petugas' => 'required',
+            'email'        => 'required',
+            'password'     => 'required',
         ];
     }
 
@@ -36,12 +40,14 @@ class PetugasRequest extends Request
     {
         $message = $validator->errors();
         return [
-            'success' => false,
+            'success'    => false,
             'validation' => [
 
                 'kode_petugas' => $message->first('kode_petugas'),
-                'nama_petugas' => $message->first('nama_petugas')
-            ]
+                'nama_petugas' => $message->first('nama_petugas'),
+                'email'        => $message->first('email'),
+                'password'     => $message->first('password'),
+            ],
         ];
     }
 }

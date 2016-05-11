@@ -14,12 +14,12 @@
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
                                aria-expanded="false"><i class="fa fa-wrench"></i></a>
-                            <ul class="dropdown-menu" role="menu">
-                                <li><a href="#">Settings 1</a>
-                                </li>
-                                <li><a href="#">Settings 2</a>
-                                </li>
-                            </ul>
+                            {{--<ul class="dropdown-menu" role="menu">--}}
+                                {{--<li><a href="#">Settings 1</a>--}}
+                                {{--</li>--}}
+                                {{--<li><a href="#">Settings 2</a>--}}
+                                {{--</li>--}}
+                            {{--</ul>--}}
                         </li>
                         <li><a class="close-link"><i class="fa fa-close"></i></a>
                         </li>
@@ -49,6 +49,7 @@
                                                     class="form-control"
                                                     aria-controls="example" size="1"
                                                     name="category_main"
+                                                    ng-disabled="disUtama.txtCari" ng-enter="getData()"
                                                     onchange="getAjax(this.value)">
                                             </select>
                                         </div>
@@ -634,7 +635,53 @@
                         });
             }
         }
+        function getDataGuru(page) {
+            $("#row").children().remove();
+            $("#pagination-guru").children().remove();
+            var term = $("#search-guru").val();
+            $("#loader2").delay(2000).animate({
+                opacity: 0,
+                width: 0,
+                height: 0
+            }, 500);
+            setTimeout(function () {
+                $.getJSON("/api/v1/guru?page=" + page + "&term=" + term, function (data) {
+                    var jumlah = data.data.length;
 
+                    // Init pagination
+                    $("#pagination-guru").append("<ul class='pagination pagination-sm'><li class='disabled'><a href='#'>&laquo;</a></li></ul>");
+
+                    if (data.last_page > 1) {
+                        for (var i = 1; i <= data.last_page; i++) {
+                            if (data.current_page == i) {
+                                $(".pagination-sm").append("<li class='active'><a href='#'>" + i + " </a></li>");
+                            }
+                            else {
+                                $(".pagination-sm").append("<li><a onclick='getDataGuru(" + i + ")'> " + i + " </a></li>");
+                            }
+                        }
+                    }
+                    else {
+                        $(".pagination-sm").append("<li class='active'><a href='#'>1</a></li>");
+                    }
+
+                    $(".pagination-sm").append("<li class='disabled'><a href='#'>&raquo;</a></li>");
+
+                    $.each(data.data.slice(0, jumlah), function (i, data) {
+                        $("#row").append("<tr><td>" + (i + 1) + "</td>" +
+                                "<td>" + data.nama + "</td>" +
+                                "<td>" + data.alamat + "</td>" +
+//                            "<td>" + data.mapel.mapel + "</td>" +
+                                "<td>" + data.no_hp + "</td>" +
+                                "<td>" +
+//                            "<button type='button' class='btn btn-sm btn-default' style='margin-bottom: 10px;' data-toggle='modal' data-target='#myModal' onclick='Detail(\"" + data.id + "\")'><i class='fa fa-eye'></i></button> " +
+                                "<button type='button' class='btn btn-sm btn-default' style='margin-bottom: 10px;' onclick='Edit(\"" + data.id + "\")'><i class='fa fa-edit'></i></button>" +
+                                "<button type='button' class='btn btn-sm btn-default' style='margin-bottom: 10px;' data-toggle='tooltip' data-placement='top' title='Mengajar' onclick='Ajar(\"" + data.id + "\")'><i class='fa fa-group'></i></button> " +
+                                "<button type='button' class='btn btn-sm btn-default' style='margin-bottom: 10px;' onclick='Hapus(\"" + data.id + "\")'><i class='fa fa-trash-o'></i></button></td></tr>");
+                    })
+                });
+            }, 2200);
+        }
     </script>
     </body>
 @endsection

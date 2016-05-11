@@ -1,5 +1,4 @@
 @extends('layouts.master')
-@section('title', 'Page Title')
 @section('content')
     <body onload="Index()" xmlns="http://www.w3.org/1999/html">
     <div id="Index">
@@ -7,19 +6,9 @@
         <div class="col-md-12 col-sm-12 col-xs-12">
             <div class="x_panel">
                 <div class="x_title">
-                    <h2>Anggota Kelas XII</h2>
+                    <h2>Anggota Perpustakaan</h2>
                     <ul class="nav navbar-right panel_toolbox">
                         <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-                        </li>
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
-                               aria-expanded="false"><i class="fa fa-wrench"></i></a>
-                            <ul class="dropdown-menu" role="menu">
-                                <li><a href="#">Settings 1</a>
-                                </li>
-                                <li><a href="#">Settings 2</a>
-                                </li>
-                            </ul>
                         </li>
                         <li><a class="close-link"><i class="fa fa-close"></i></a>
                         </li>
@@ -84,98 +73,89 @@
         <div class="col-md-12 col-sm-12 col-xs-12">
             <div class="x_panel">
                 <div class="x_title">
-                    <h2>Tambah Anggota Kelas XII</h2>
+                    <h2>Tambah Anggota Kelas X</h2>
                     <ul class="nav navbar-right panel_toolbox">
                         <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                         </li>
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
-                               aria-expanded="false"><i class="fa fa-wrench"></i></a>
-                            <ul class="dropdown-menu" role="menu">
-                                <li><a href="#">Settings 1</a>
-                                </li>
-                                <li><a href="#">Settings 2</a>
-                                </li>
-                            </ul>
-                        </li>
+
                         <li><a class="close-link"><i class="fa fa-close"></i></a>
                         </li>
                     </ul>
                     <div class="clearfix"></div>
                 </div>
-        <div class="row">
-            <div class="col-lg-12">
-                <div class="panel panel-default">
-                    <div class="panel-body">
-                        <div class="row">
-                            <div class="col-lg-8">
-                                <form id="Form-Create" class="form-horizontal form-label-left">
-                                    <div class="form-group">
-                                        <label class="control-label col-sm-3">
-                                            Kode Anggota </label>
-                                        <div class="col-sm-7">
-                                            <input type="text" name="kode_anggota" id="kode_anggota"
-                                                   required="required" class="form-control col-md-12 col-xs-12">
-                                        </div>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="panel panel-default">
+                            <div class="panel-body">
+                                <div class="row">
+                                    <div class="col-lg-8">
+                                        <form id="Form-Create" class="form-horizontal form-label-left">
+                                            <div class="form-group">
+                                                <label class="control-label col-sm-3">
+                                                    Kode Anggota </label>
+                                                <div class="col-sm-7">
+                                                    <input type="text" name="kode_anggota" id="kode_anggota"
+                                                           required="required" class="form-control col-md-12 col-xs-12">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="control-label col-sm-3">
+                                                    Nama Anggota </label>
+                                                <div class="col-sm-7">
+                                                    <input type="text" name="nama_anggota" id="nama_anggota"
+                                                           required="required" class="form-control col-md-12 col-xs-12">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="control-label col-sm-3">
+                                                    Kelas </label>
+                                                <div class="col-sm-7">
+                                                    <input type="text" name="kelas" id="kelas"
+                                                           required="required" class="form-control col-md-12 col-xs-12">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="control-label col-sm-3">
+                                                    Alamat Anggota </label>
+                                                <div class="col-sm-7">
+                                                    <input type="text" name="alamat_anggota" id="alamat_anggota"
+                                                           required="required" class="form-control col-md-12 col-xs-12">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="control-label col-sm-3">
+                                                    Telepon Anggota </label>
+                                                <div class="col-sm-7">
+                                                    <input type="text" name="telp_anggota" id="telp_anggota"
+                                                           required="required" class="form-control col-md-12 col-xs-12">
+                                                </div>
+                                            </div>
+                                            <div class="row row-sm form-group">
+                                                <div class="col-sm-offset-3 col-sm-6">
+                                                    <input class="btn btn-outline btn-info" type="submit" id="Submit"
+                                                           value="Simpan">
+                                                    <button type="button" class="btn btn-outline btn-primary"
+                                                            onclick="Index()">Kembali
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </form>
                                     </div>
-                                    <div class="form-group">
-                                        <label class="control-label col-sm-3">
-                                            Nama Anggota </label>
-                                        <div class="col-sm-7">
-                                            <input type="text" name="nama_anggota" id="nama_anggota"
-                                                   required="required" class="form-control col-md-12 col-xs-12">
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="control-label col-sm-3">
-                                            Kelas </label>
-                                        <div class="col-sm-7">
-                                            <input type="text" name="kelas" id="kelas"
-                                                   required="required" class="form-control col-md-12 col-xs-12">
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="control-label col-sm-3">
-                                            Alamat Anggota </label>
-                                        <div class="col-sm-7">
-                                            <input type="text" name="alamat_anggota" id="alamat_anggota"
-                                                   required="required" class="form-control col-md-12 col-xs-12">
-                                        </div>
-                                    </div>
-                                    <div class="form-group">
-                                        <label class="control-label col-sm-3">
-                                            Telepon Anggota </label>
-                                        <div class="col-sm-7">
-                                            <input type="text" name="telp_anggota" id="telp_anggota"
-                                                   required="required" class="form-control col-md-12 col-xs-12">
-                                        </div>
-                                    </div>
-                                    <div class="row row-sm form-group">
-                                    <div class="col-sm-offset-3 col-sm-6">
-                                        <input class="btn btn-outline btn-info" type="submit" id="Submit"
-                                               value="Simpan">
-                                        <button type="button" class="btn btn-outline btn-primary"
-                                                onclick="Index()">Kembali
-                                        </button>
-                                    </div>
-                                </div>
-                                </form>
-                            </div>
 
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-            </div>
-        </div>
-        </div>
+    </div>
 
     <div id="Edit">
         <div class="col-md-12 col-sm-12 col-xs-12">
             <div class="x_panel">
                 <div class="x_title">
-                    <h2>Edit Anggota Kelas XII</h2>
+                    <h2>Edit Anggota Kelas X</h2>
                     <ul class="nav navbar-right panel_toolbox">
                         <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                         </li>
@@ -196,75 +176,75 @@
                 </div>
 
                 <div class="row">
-            <div class="col-lg-12">
-                <div class="panel panel-default">
-                    <div class="panel-body">
-                            <div class="row">
-                                <div class="col-lg-8">
-                                    <form id="Form-Edit" class="form-horizontal form-label-left">
-                                        <input type="hidden" name="id">
-                                        <div class="form-group">
-                                            <label class="control-label col-sm-3">
-                                                Kode Anggota </label>
-                                            <div class="col-sm-7">
-                                                <input type="text" name="kode_anggota" id="kode_anggota"
-                                                       required="required" class="form-control col-md-12 col-xs-12">
+                    <div class="col-lg-12">
+                        <div class="panel panel-default">
+                            <div class="panel-body">
+                                <div class="row">
+                                    <div class="col-lg-8">
+                                        <form id="Form-Edit" class="form-horizontal form-label-left">
+                                            <input type="hidden" name="id">
+                                            <div class="form-group">
+                                                <label class="control-label col-sm-3">
+                                                    Kode Anggota </label>
+                                                <div class="col-sm-7">
+                                                    <input type="text" name="kode_anggota" id="kode_anggota"
+                                                           required="required" class="form-control col-md-12 col-xs-12">
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="control-label col-sm-3">
-                                                Nama Anggota </label>
-                                            <div class="col-sm-7">
-                                                <input type="text" name="nama_anggota" id="nama_anggota"
-                                                       required="required" class="form-control col-md-12 col-xs-12">
+                                            <div class="form-group">
+                                                <label class="control-label col-sm-3">
+                                                    Nama Anggota </label>
+                                                <div class="col-sm-7">
+                                                    <input type="text" name="nama_anggota" id="nama_anggota"
+                                                           required="required" class="form-control col-md-12 col-xs-12">
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="control-label col-sm-3">
-                                                Kelas </label>
-                                            <div class="col-sm-7">
-                                                <input type="text" name="kelas" id="kelas"
-                                                       required="required" class="form-control col-md-12 col-xs-12">
+                                            <div class="form-group">
+                                                <label class="control-label col-sm-3">
+                                                    Kelas </label>
+                                                <div class="col-sm-7">
+                                                    <input type="text" name="kelas" id="kelas"
+                                                           required="required" class="form-control col-md-12 col-xs-12">
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="control-label col-sm-3">
-                                                Alamat Anggota </label>
-                                            <div class="col-sm-7">
-                                                <input type="text" name="alamat_anggota" id="alamat_anggota"
-                                                       required="required" class="form-control col-md-12 col-xs-12">
+                                            <div class="form-group">
+                                                <label class="control-label col-sm-3">
+                                                    Alamat Anggota </label>
+                                                <div class="col-sm-7">
+                                                    <input type="text" name="alamat_anggota" id="alamat_anggota"
+                                                           required="required" class="form-control col-md-12 col-xs-12">
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <label class="control-label col-sm-3">
-                                                Telepon Anggota </label>
-                                            <div class="col-sm-7">
-                                                <input type="text" name="telp_anggota" id="telp_anggota"
-                                                       required="required" class="form-control col-md-12 col-xs-12">
+                                            <div class="form-group">
+                                                <label class="control-label col-sm-3">
+                                                    Telepon Anggota </label>
+                                                <div class="col-sm-7">
+                                                    <input type="text" name="telp_anggota" id="telp_anggota"
+                                                           required="required" class="form-control col-md-12 col-xs-12">
+                                                </div>
                                             </div>
-                                        </div>
 
-                                        <div class="row row-sm form-group">
-                                            <div class="col-sm-offset-3 col-sm-6">
-                                            <input class="btn btn-outline btn-info" type="submit"
-                                                   value="Simpan">
-                                            {{--onclick="location.href='/makanan/{{$data->id}}';">Simpan--}}
-                                            {{--</button>--}}
-                                            <button type="button" class="btn btn-outline btn-primary"
-                                                    onclick="Index();">Kembali
-                                            </button>
-                                        </div>
+                                            <div class="row row-sm form-group">
+                                                <div class="col-sm-offset-3 col-sm-6">
+                                                    <input class="btn btn-outline btn-info" type="submit"
+                                                           value="Simpan">
+                                                    {{--onclick="location.href='/makanan/{{$data->id}}';">Simpan--}}
+                                                    {{--</button>--}}
+                                                    <button type="button" class="btn btn-outline btn-primary"
+                                                            onclick="Index();">Kembali
+                                                    </button>
+                                                </div>
+                                            </div>
+                                        </form>
                                     </div>
-                                    </form>
                                 </div>
-                            </div>
 
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
-            </div></div>
+        </div></div>
 
     {{--Modal--}}
 
@@ -335,36 +315,36 @@
                 event.preventDefault();
                 var $form = $(this),
                         id = $form.find("input[name='id']").val(),
-                       kode_anggota = $form.find("input[name='kode_anggota']").val(),
+                        kode_anggota = $form.find("input[name='kode_anggota']").val(),
                         nama_anggota = $form.find("input[name='nama_anggota']").val(),
                         kelas = $form.find("input[name='kelas']").val(),
                         alamat_anggota = $form.find("input[name='alamat_anggota']").val(),
                         telp_anggota = $form.find("input[name='telp_anggota']").val();
 
-                        currentRequest = $.ajax({
-                            method: "PUT",
-                            url: '/api/v1/anggota/' + id,
-                            data: {
-                                kode_anggota: kode_anggota,
-                                nama_anggota: nama_anggota,
-                                kelas: kelas,
-                                alamat_anggota: alamat_anggota,
-                                telp_anggota: telp_anggota
-                            },
-                            beforeSend: function () {
-                                if (currentRequest != null) {
-                                    currentRequest.abort();
-                                }
-                            },
-                            success: function (data) {
-                                window.alert(data.result.message);
-                                Index();
-                            },
-                            error: function (data) {
-                                window.alert(data.result.message);
-                                Index();
-                            }
-                        });
+                currentRequest = $.ajax({
+                    method: "PUT",
+                    url: '/api/v1/anggota/' + id,
+                    data: {
+                        kode_anggota: kode_anggota,
+                        nama_anggota: nama_anggota,
+                        kelas: kelas,
+                        alamat_anggota: alamat_anggota,
+                        telp_anggota: telp_anggota
+                    },
+                    beforeSend: function () {
+                        if (currentRequest != null) {
+                            currentRequest.abort();
+                        }
+                    },
+                    success: function (data) {
+                        window.alert(data.result.message);
+                        Index();
+                    },
+                    error: function (data) {
+                        window.alert(data.result.message);
+                        Index();
+                    }
+                });
             });
         });
 
@@ -401,14 +381,14 @@
                 height: 0
             }, 500);
             setTimeout(function () {
-                $.getJSON("/data-anggota-xii", function (data) {
-                    var jumlah = data.length;
-                    $.each(data.slice(0, jumlah), function (i, data) {
+                $.getJSON("/api/v1/anggota", function (data) {
+                    var jumlah = data.data.length;
+                    $.each(data.data.slice(0, jumlah), function (i, data) {
                         $("#data-example").append("" +
                                 "<tr>" +
                                 "<td>" + data.kode_anggota + "</td>" +
                                 "<td>" + data.nama_anggota + "</td>" +
-                                "<td>" + data.kelas + "</td>" +
+                                "<td>" + data.kelas.kelas + "</td>" +
                                 "<td>" + data.alamat_anggota + "</td>" +
                                 "<td>" + data.telp_anggota + "</td>" +
 

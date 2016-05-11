@@ -17,7 +17,7 @@ class Petugas extends Entities
     /**
      * @var array
      */
-    protected $fillable = ['kode_petugas', 'nama_petugas'];
+    protected $fillable = ['kode_petugas', 'nama_petugas','email','password'];
 
     /**
      * @var string

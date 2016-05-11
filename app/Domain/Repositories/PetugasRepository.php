@@ -50,6 +50,8 @@ class PetugasRepository extends AbstractRepository implements Paginable, Crudabl
                 [
                     'kode_petugas' => e($data['kode_petugas']),
                     'nama_petugas' => e($data['nama_petugas']),
+                    'email' => e($data['email']),
+                    'password' => e($data['password']),
                 ]
             );
             // flush cache with tags
@@ -68,6 +70,8 @@ class PetugasRepository extends AbstractRepository implements Paginable, Crudabl
             $petugas = parent::update($id, [
                 'kode_petugas' => e($data['kode_petugas']),
                 'nama_petugas' => e($data['nama_petugas']),
+                'email' => e($data['email']),
+                'password' => e($data['password']),
             ]);
 
             // flush cache with tags

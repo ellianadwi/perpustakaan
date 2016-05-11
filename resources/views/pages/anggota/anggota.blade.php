@@ -1,5 +1,4 @@
 @extends('layouts.master')
-@section('title', 'Page Title')
 @section('content')
     <body onload="Index()" xmlns="http://www.w3.org/1999/html">
     <div id="Index">
@@ -7,19 +6,9 @@
         <div class="col-md-12 col-sm-12 col-xs-12">
             <div class="x_panel">
                 <div class="x_title">
-                    <h2>Anggota Kelas X</h2>
+                    <h2>Anggota Perpustakaan</h2>
                     <ul class="nav navbar-right panel_toolbox">
                         <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-                        </li>
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
-                               aria-expanded="false"><i class="fa fa-wrench"></i></a>
-                            <ul class="dropdown-menu" role="menu">
-                                <li><a href="#">Settings 1</a>
-                                </li>
-                                <li><a href="#">Settings 2</a>
-                                </li>
-                            </ul>
                         </li>
                         <li><a class="close-link"><i class="fa fa-close"></i></a>
                         </li>
@@ -88,16 +77,7 @@
                     <ul class="nav navbar-right panel_toolbox">
                         <li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
                         </li>
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
-                               aria-expanded="false"><i class="fa fa-wrench"></i></a>
-                            <ul class="dropdown-menu" role="menu">
-                                <li><a href="#">Settings 1</a>
-                                </li>
-                                <li><a href="#">Settings 2</a>
-                                </li>
-                            </ul>
-                        </li>
+
                         <li><a class="close-link"><i class="fa fa-close"></i></a>
                         </li>
                     </ul>
@@ -401,14 +381,14 @@
                 height: 0
             }, 500);
             setTimeout(function () {
-                $.getJSON("/data-anggota-xii", function (data) {
-                    var jumlah = data.length;
-                    $.each(data.slice(0, jumlah), function (i, data) {
+                $.getJSON("/api/v1/anggota", function (data) {
+                    var jumlah = data.data.length;
+                    $.each(data.data.slice(0, jumlah), function (i, data) {
                         $("#data-example").append("" +
                                 "<tr>" +
                                 "<td>" + data.kode_anggota + "</td>" +
                                 "<td>" + data.nama_anggota + "</td>" +
-                                "<td>" + data.kelas + "</td>" +
+                                "<td>" + data.kelas.kelas + "</td>" +
                                 "<td>" + data.alamat_anggota + "</td>" +
                                 "<td>" + data.telp_anggota + "</td>" +
 

@@ -14,13 +14,13 @@
 Route::get('/', function () {
     return view('pages.index');
 });
-//Route::get('/login', function () {
-//    return view('login');
-//});
-Route::get('/', ['as' => 'login', 'uses' => 'PageController@getLogin']);
+
+Route::get('/admin', ['as' => 'login', 'uses' => 'PageController@getLogin']);
 Route::get('/login', ['as' => 'login', 'uses' => 'PageController@getLogin']);
 Route::get('/dashboard', ['as' => 'dashboard', 'uses' => 'PageController@dashboard']);
+Route::get('give-me-token', ['as' => 'token', 'uses' => 'PageController@token']);
 
+// session login
 Route::group(['namespace' => 'Auth', 'prefix' => 'api/v1'], function () {
     Route::get('get-login', 'AuthController@getLogin');
     Route::get('post-login', 'AuthController@getLogin');
@@ -28,128 +28,66 @@ Route::group(['namespace' => 'Auth', 'prefix' => 'api/v1'], function () {
     Route::get('logout', 'AuthController@getLogout');
 });
 
-Route::get('/create-kategori', function () {
-    return view('pages.kategori.create');
-});
-Route::get('/create-peminjaman', function () {
-    return view('pages.kategori.create');
-});
-Route::get('/create-detail-pinjam', function () {
-    return view('pages.detailpinjam.create');
-});
+// Anggota
 
-Route::get('kategori', 'KategoriController@index');
-
-Route::get('kategori/{id}', 'KategoriController@show');
-
-Route::get('detail-kategori/{id}', 'KategoriController@detail');
-
-Route::get('edit-kategori/{id}', 'KategoriController@edit');
-
-Route::post('kategori', 'KategoriController@store');
-
-Route::put('kategori/{id}', 'KategoriController@update');
-
-Route::delete('hapus-kategori/{id}', 'KategoriController@destroy');
-
-Route::get('/data-kategori', 'KategoriController@getData');
-Route::get('/data-buku', 'BukuController@getData');
-
-
+Route::get('/', ['as' => 'page.useranggota', function () {
+    return view('pages.index');
+}]);
 Route::get('/kategori', ['as' => 'page.kategori', function () {
-    return view('pages.kategori.index');
+    return view('pages.anggota.kategori');
 }]);
 
 Route::get('/buku', ['as' => 'page.buku', function () {
-    return view('pages.buku.buku');
+    return view('pages.anggota.buku');
 }]);
-
-
-Route::get('peminjaman', 'PeminjamanController@index');
-
-Route::get('peminjaman/{id}', 'PeminjamanController@show');
-
-Route::get('detail-peminjaman/{id}', 'PeminjamanController@detail');
-
-Route::get('edit-peminjaman/{id}', 'PeminjamanController@edit');
-
-Route::post('peminjaman', 'PeminjamanController@store');
-
-Route::put('peminjaman/{id}', 'PeminjamanController@update');
-
-Route::delete('hapus-peminjaman/{id}', 'PeminjamanController@destroy');
-
-Route::get('/data-peminjaman', 'PeminjamanController@getData');
 
 Route::get('/peminjaman', ['as' => 'page.peminjaman', function () {
-    return view('pages.peminjaman.index');
+    return view('pages.anggota.peminjaman');
 }]);
-
-
-Route::get('detail-pinjam', 'DetailPinjamController@index');
-
-Route::get('detail-pinjam/{id}', 'DetailPinjamController@show');
-
-Route::get('detail-detail-pinjam/{id}', 'DetailPinjamController@detail');
-
-Route::post('detail-pinjam', 'DetailPinjamController@store');
-
-Route::put('detail-pinjam/{id}', 'DetailPinjamController@update');
-
-Route::delete('hapus-detail-pinjam/{id}', 'DetailPinjamController@destroy');
-
-Route::get('/data-detail-pinjam', 'DetailPinjamController@getData');
-Route::get('/detail-pinjam', ['as' => 'page.detail-pinjam', function () {
-    return view('pages.detailpinjam.index');
-}]);
-
-
-Route::get('petugas', 'PeminjamanController@index');
-
-Route::get('petugas/{id}', 'PetugasController@show');
-
-Route::get('detail-petugas/{id}', 'PetugasController@detail');
-
-Route::get('edit-petugas/{id}', 'PetugasController@edit');
-
-Route::post('petugas', 'PetugasController@store');
-
-Route::put('petugas/{id}', 'PetugasController@update');
-
-Route::delete('hapus-petugas/{id}', 'PetugasController@destroy');
-
-Route::get('/data-petugas', 'PetugasController@getData');
 
 Route::get('/petugas', ['as' => 'page.petugas', function () {
-    return view('pages.petugas.index');
+    return view('pages.anggota.petugas');
 }]);
 
-Route::get('/anggota-kelasx', ['as' => 'page.kelasx', function () {
-    return view('pages.anggota.kelasx');
-}]);
-Route::get('/anggota-kelasxi', ['as' => 'page.kelasxi', function () {
-    return view('pages.anggota.kelasxi');
-}]);
-Route::get('/anggota-kelasxii', ['as' => 'page.kelasxii', function () {
-    return view('pages.anggota.kelasxii');
+Route::get('/anggota', ['as' => 'page.anggota', function () {
+    return view('pages.anggota.anggota');
 }]);
 
 Route::get('/data-peminjaman', ['as' => 'page.pengembalian', function () {
-    return view('pages.pengembalian');
+    return view('pages.anggota.pengembalian');
 }]);
 
-Route::get('/data-anggota-x', 'AnggotaController@getPageList1');
-Route::get('/data-anggota-xi', 'AnggotaController@getPageList2');
-Route::get('/data-anggota-xii', 'AnggotaController@getPageList3');
-Route::get('/data-anggota-by-kelas/{kelas}', 'AnggotaController@getListByKelas');
-Route::get('/data-buku-by-kategori/{kategori}', 'BukuController@getListByKategori');
+// Admin
 
+Route::get('/home', ['as' => 'page.admin', function () {
+    return view('pages.admin.index');
+}]);
+Route::get('/kategori2', ['as' => 'page.kategori2', function () {
+    return view('pages.admin.kategori');
+}]);
 
-Route::get('/data-petugas', 'PetugasController@getData');
-Route::get('/data-kelas', 'KelasController@getData');
+Route::get('/buku2', ['as' => 'page.buku2', function () {
+    return view('pages.admin.buku');
+}]);
 
-Route::get('give-me-token', ['as' => 'token', 'uses' => 'PageController@token']);
+Route::get('/peminjaman2', ['as' => 'page.peminjaman2', function () {
+    return view('pages.admin.peminjaman');
+}]);
+
+Route::get('/petugas2', ['as' => 'page.petugas2', function () {
+    return view('pages.admin.petugas');
+}]);
+
+Route::get('/anggota2', ['as' => 'page.anggota2', function () {
+    return view('pages.admin.anggota');
+}]);
+
+Route::get('/data-peminjaman-admin', ['as' => 'page.pengembalian2', function () {
+    return view('pages.admin.pengembalian');
+}]);
+
 Route::group(['prefix' => 'api/v1'], function () {
+
     Route::resource('petugas', 'PetugasController');
     Route::resource('kategori', 'KategoriController');
     Route::resource('buku', 'BukuController');
@@ -159,4 +97,18 @@ Route::group(['prefix' => 'api/v1'], function () {
     Route::resource('kelas', 'KelasController');
     Route::put('kembalikan-buku/{id}', 'PeminjamanController@kembali');
 
+
 });
+Route::get('/data-kategori', 'KategoriController@getData');
+Route::get('/data-buku', 'BukuController@getData');
+
+Route::get('/data-peminjaman', 'PeminjamanController@getData');
+Route::get('/data-detail-pinjam', 'DetailPinjamController@getData');
+Route::get('/data-petugas', 'PetugasController@getData');
+Route::get('/data-anggota-x', 'AnggotaController@getPageList1');
+Route::get('/data-anggota-xi', 'AnggotaController@getPageList2');
+Route::get('/data-anggota-xii', 'AnggotaController@getPageList3');
+Route::get('/data-anggota-by-kelas/{kelas}', 'AnggotaController@getListByKelas');
+Route::get('/data-buku-by-kategori/{kategori}', 'BukuController@getListByKategori');
+Route::get('/data-petugas', 'PetugasController@getData');
+Route::get('/data-kelas', 'KelasController@getData');

@@ -46,7 +46,7 @@
         <div id="login" class="animate form">
             <section class="login_content">
                 <form method="post" action="api/v1/post-login">
-                    <h1>Login Form</h1>
+                    <h1>Login Perpustakaan</h1>
                     <div>
                         <input type="text" class="form-control" placeholder="Username" required="" name="email"/>
                     </div>
@@ -55,21 +55,20 @@
                     </div>
                     <div>
                         <input class="btn btn-default submit" type="submit" value="Log in">
-                        <a class="reset_pass" href="#">Lost your password?</a>
+                        {{--<a class="reset_pass" href="#">Lost your password?</a>--}}
                     </div>
                     <div class="clearfix"></div>
                     <div class="separator">
 
-                        <p class="change_link">New to site?
-                            <a href="#toregister" class="to_register"> Create Account </a>
+                        <p class="change_link">Akun baru ?
+                            <a href="#toregister" class="to_register"> Buat Akun </a>
                         </p>
                         <div class="clearfix"></div>
                         <br/>
                         <div>
-                            <h1><i class="fa fa-paw" style="font-size: 26px;"></i> Gentelella Alela!</h1>
+                            <h1><i class="fa fa-paw" style="font-size: 26px;"></i> Perpustakaan Sekolah!</h1>
 
-                            <p>©2015 All Rights Reserved. Gentelella Alela! is a Bootstrap 3 template. Privacy and
-                                Terms</p>
+                            <p>©2016 </p>
                         </div>
                     </div>
                 </form>

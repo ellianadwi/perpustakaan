@@ -54,14 +54,14 @@
     <div class="main_container">
 
         <div class="col-md-3 left_col">
-            @include('includes.sidebar')
+            @include('includes.sidebaradmin')
         </div>
 
         <!-- top navigation -->
         <div class="top_nav">
 
             <div class="nav_menu">
-                @include('includes.header')
+                @include('includes.headeradmin')
             </div>
 
         </div>
@@ -74,9 +74,9 @@
             @yield('content')
             @include('includes.footer')
         </div>
-        {{--<!-- /page content -->--}}
-        {{--<div class="col-md-10  left_col row">--}}
-        {{----}}
+        <!-- /page content -->
+        {{--<div class="col-md-10  right_col row">--}}
+      {{----}}
         {{--</div>--}}
     </div>
 
